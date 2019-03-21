@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+ 	<div class="vocabulary_component">
+ 		<div class="title_intro">
+			<span>VOCABULARY</span>
+		</div>
+		<div class="content">
+			<div class="title_content">
+				<label>Vocabulary Topic - Appliances</label>
+			</div>
+			<div class="title_content vocabularies" *ngFor="let i of createRang(5)">
+				<div class="section1 vocabulary">
+					CD, noun
+				</div>
+				<div class="section1 description">
+					a digitally encoded recording on an optical disk that is smaller than a phonograph record; played back by a laser
+				</div>
+			</div>
+		</div>
+		<div class="topic">
+			<div class="title_topic">
+				<span><i class="fa fa-bars" aria-hidden="true"></i>  Topic</span>
+			</div>
+			<div class="buttons">
+				<input class="button" type="button" name="" value="Appliances" *ngFor="let item of createRang(5)">
+			</div>
+		</div>
+ 	</div>
+</body>
+</html>

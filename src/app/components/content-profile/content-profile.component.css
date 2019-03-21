@@ -1,0 +1,74 @@
+.title_intro {
+	width: 100%;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 30px;
+  text-align: center;
+  margin: 30px;
+}
+.vocabulary_component{
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+.content{
+	display: flex;
+	flex-wrap: wrap;
+	width: 80%;
+	padding: 0px 150px;
+	box-sizing: border-box;
+}
+.topic{
+	display: block;
+	width: 20%;
+	text-align: center;
+	box-sizing: border-box;
+	padding-right: 100px;
+}
+
+label{
+	background: blue;
+	opacity: 0.7;
+	color: white;
+	padding: 10px 20px;
+	border-radius: 20px;
+}
+
+.title_topic{
+	font-weight: bold;
+	font-size: 20px;
+	margin-bottom: 30px;
+}
+.button{
+	width: 150px;
+	padding: 5px;
+	border: none;
+	margin: 1px;
+    border-radius: 5px;
+}
+.section1{
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	padding: 5px;
+	align-items: center;
+}
+.section2{
+	display: flex;
+	width: 30%;
+	font-weight: bold;
+}
+.section3{
+	display: flex;
+	width: 40%;
+}
+.section4{
+	display: flex;
+	width: 30%;
+	justify-content: center;
+}
+.img_user{
+	/*border: 1px solid black;*/
+	border-radius: 50%;
+	box-shadow: 0px 0px 10px blue;
+
+}

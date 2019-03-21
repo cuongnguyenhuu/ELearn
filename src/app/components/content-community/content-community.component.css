@@ -1,0 +1,167 @@
+.title_intro {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 30px;
+  text-align: center;
+  margin: 30px;
+}
+.content{
+	display: flex;
+	flex-wrap: wrap;
+	/*justify-content: center;
+	align-items: center;*/
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 150px;
+}
+.content{
+	display: flex;
+	flex-wrap: wrap;
+	/*justify-content: center;
+	align-items: center;*/
+	width: 100%;
+	box-sizing: border-box;
+}
+.questions{
+	display: flex;
+	flex-wrap: wrap;
+	/*justify-content: center;
+	align-items: center;*/
+	width: 80%;
+	box-sizing: border-box;
+}
+.setting{
+	display: block;
+	/*flex-wrap: wrap;*/
+	/*justify-content: center;
+	align-items: center;*/
+	width: 20%;
+	box-sizing: border-box;
+	text-align: center;
+}
+.section1{
+	display: flex;
+	flex-wrap: wrap;
+	/*justify-content: center;
+	align-items: center;*/
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.button_submit_custom{
+    padding: 10px 30px;
+    margin: 8px 0;
+    border: 1px solid;
+    background-image: linear-gradient(to right, blue, #9999ff);
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+}
+.button_submit_custom:hover{
+    cursor: pointer;
+    transition: 6s;
+    background-image: linear-gradient(to right, #ccccff, blue);
+    color: white;
+}
+.button_submit_custom:focus{
+    outline: none;
+    background-image: linear-gradient(to right, blue, blue);
+    color: white;
+}
+.img{
+	display: flex;
+	padding-right: 10px;
+	/*width: 15%;*/
+	box-sizing: border-box;
+}
+.name_datetime{
+	display: flex;
+	flex-wrap: wrap;
+	width: 85%;
+	box-sizing: border-box;
+}
+.function{
+	display: flex;
+	width: 5%;
+}
+.img_user{
+	/*border: 1px solid black;*/
+	border-radius: 50%;
+	box-shadow: 0px 0px 10px blue;
+
+}
+.question{
+	background-color: #e6f2ff;
+	padding-top: 20px;
+	padding-right: 20px;
+	padding-left: 20px;
+	border-radius: 40px;
+	margin: 10px;
+}
+.name{
+	font-weight: bold;
+	color:blue;
+}
+.datetime{
+	font-size: 12px;
+}
+.content_question{
+	font-weight: bold;
+	padding: 10px;
+}
+.like_comment{
+	padding-left: 20px;
+	padding-top: 20px;
+}
+.button_like_commnet{
+	border: none;
+	margin: 5px;
+	padding: 5px;
+	border-radius: 20px;
+}
+.box{
+	padding-right: 20px;
+}
+.title_setting{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	/*align-items: center;*/
+	width: 100%;
+	box-sizing: border-box;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	font-weight: bold;
+	font-size: 20px;
+	padding:20px;
+	/*text-align: center;*/
+}
+.options{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	/*padding: 0px 100px;*/
+}
+.option{
+	display: flex;
+	flex-wrap: wrap;
+	/*width: 100%;*/
+	/*padding: px;*/
+	box-sizing: border-box;
+}
+.section2{
+	display: flex;
+	flex-wrap: wrap;
+	/*justify-content: center;
+	align-items: center;*/
+	width: 50%;
+	box-sizing: border-box;
+}
+.section3{
+	display: block;
+	/*flex-wrap: wrap;*/
+	/*justify-content: center;
+	align-items: center;*/
+	width: 100%;
+	box-sizing: border-box;
+}

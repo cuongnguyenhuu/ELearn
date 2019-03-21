@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="./../../assets/style.css">
+</head>
+<body>
+	<div class="content_community">
+		<div class="title_intro">
+			<span>COMMUNITY</span>
+		</div>
+		<div class="content">
+			<div class="questions" >
+				<div class="section1">
+					<input class="button_submit_custom" type="button" name="" value="Create new question">
+				</div>
+				<div class="question section1" *ngFor="let item of createRange(5)">
+					<div class="info_question section1">
+						<div class="img">
+							<img class="img_user" src="./../../../assets/images/user.png" width="30px" height="30px">
+						</div>
+						<div class="name_datetime">
+							<div class="name section1">
+								Cuong nguyen
+							</div>
+							<div class="datetime section1">
+								3/12/2019 at 9:09 AM
+							</div>
+							
+						</div>
+						<div class="function">
+							<i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+						</div>
+					</div>
+					<div class="content_question">
+						<span>a communication system based on broadcasting electromagnetic waves</span>
+					</div>
+					<div class="section1">
+						<span class="section2">A. phone</span>
+						<span class="section2">B. gas</span>
+					</div>
+					<div class="section1">
+						<span class="section2">C. radio</span>
+						<span class="section2">D. laptop</span>
+					</div>
+					<div class="like_comment section1">
+						<div class="box" >
+							<i class="fa fa-heart" aria-hidden="true"></i><input class="button_like_commnet" type="button" name="" value="Like(10)">
+						</div>
+						<div class="box">
+							<i class="fa fa-commenting" aria-hidden="true"></i><input class="button_like_commnet" type="button" name="" value="Comment(37)">
+						</div>
+						<div class="box">
+							<i class="fa fa-bookmark" aria-hidden="true"></i><input class="button_like_commnet" type="button" name="" value="Save bookmark">
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<div class="setting">
+					<div class="section3">
+						<span class="title_setting">Setting</span>
+					</div>
+					<div class="section3">
+						<select class="button_cancel_custom">
+							<option>Newest</option>
+							<option>Popular</option>
+						</select>
+					</div>
+					<div class="section3">
+						<input class="button_cancel_custom" type="button" name="" value="Bookmark">
+					</div>
+					<div class="section3">
+						<input class="button_cancel_custom" type="button" name="" value="My question">
+					</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

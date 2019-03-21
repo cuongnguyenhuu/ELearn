@@ -1,0 +1,167 @@
+
+	<div class="menu">
+		<div class="nav-bar">
+			<ul>
+			  <li routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}"><a  [routerLink]="['/']">Home</a></li>
+			  <li routerLinkActive="active" class=""><a [routerLink]="['/community']">Community</a></li>
+			  <li routerLinkActive="active" class="">
+			  	<a href="#">Level</a>
+					<ul class="sub_menu">
+						<li routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}" ><a [routerLink]="['/level/b1']">B1</a></li>
+						<li routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}" ><a [routerLink]="['/level/toeic']">Toeic</a></li>
+						<li routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}" ><a [routerLink]="['/level/ielts']">Ielts</a></li>
+					</ul>
+			  </li>
+			  <li routerLinkActive="active" class=""><a [routerLink]="['/test']">Test</a></li>
+			  <li routerLinkActive="active" class=""><a [routerLink]="['/bookmark']">Bookmark</a></li>
+			  <li routerLinkActive="active"><a [routerLink]="['/profile']">Profile</a></li>
+			</ul>
+		</div>
+		<div class="section usernameAndAvatar">
+			<a href="#"><span>Hello, User</span></a>
+			<a href="#"><img class="img_user" src="./../../../assets/images/user.png" width="30px" height="30px"></a>
+			
+		</div>
+
+
+
+		<div class="section div_login">
+			<input class="button_cancel_custom" (click)="showFormLogin()" type="button" name="" value="Login">
+		</div>
+		<div class="section div_register">
+			<input class="button_cancel_custom" (click)="showFormRegister()" type="button" name="" value="Register">
+		</div>
+
+
+
+		<div class="section notify">
+			
+			<span class="text_notify">
+				Notify
+			</span>
+			<div class="bell_notify" (click)="toggle()">
+				<div class="img_bell"><i class="fa fa-bell" aria-hidden="true"></i></div>
+				<span class="notify_quantity">3</span>
+			</div>
+			<div class="detail_notify" *ngIf="isShow">
+				<a href="#">
+					<div class="img">
+						<img class="img_user" src="./../../../assets/images/user.png" width="50px" height="50px">
+					</div>
+					<div class="infor_notify">
+						<span class="title_notify">
+							Cường Nguyễn bình luận bài viết của bạn.
+						</span>
+						<span class="time_notify">
+							<i class="fa fa-clock-o" aria-hidden="true"></i>
+							<span>20-3-2019 at 9:00 AM</span>
+						</span>
+					</div>
+				</a>
+				<a href="#">
+					<div class="img">
+						<img class="img_user" src="./../../../assets/images/user.png" width="50px" height="50px">
+					</div>
+					<div class="infor_notify">
+						<span class="title_notify">
+							Cường Nguyễn bình luận bài viết của bạn.
+						</span>
+						<span class="time_notify">
+							<i class="fa fa-clock-o" aria-hidden="true"></i>
+							<span>20-3-2019 at 9:00 AM</span>
+						</span>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="form" *ngIf="formLogin">
+		<div class="background" (click)="showFormLogin()"></div>
+		<div class="login_form">
+			<div class="title_login">
+				<span>Login</span>
+			</div>
+			<div class="div_username">
+				<span>
+					Username
+				</span>
+				<i class="fa fa-user-o" aria-hidden="true"></i>
+				<input type="text" name="" placeholder="Type your username">
+			</div>
+			<div class="div_password">
+				<span>
+					Password
+				</span>
+				<i class="fa fa-lock" aria-hidden="true"></i>
+				<input type="password" name="" placeholder="Type your password">
+			</div>
+			<div class="forgot">
+				<a href="">Forgot password ?</a>
+			</div>
+			<div class="div_submit">
+				<input class="input_custom" type="button" name="" value="Login">
+			</div>
+			<div class="orther">
+				<span>Or login with</span>
+			</div>
+			<div class="icons">
+				<i class="fa fa-facebook" aria-hidden="true"></i>
+				<i class="fa fa-twitter" aria-hidden="true"></i>
+				<i class="fa fa-google" aria-hidden="true"></i>
+			</div>
+			<div class="close_login" (click)="showFormLogin()">
+				<i class="fa fa-2x fa-times" aria-hidden="true"></i>
+			</div>
+		</div>
+		<div class="register_form">
+			
+		</div>
+	</div>
+	<div class="form" *ngIf="formRegister">
+		<div class="background" (click)="showFormRegister()"></div>
+		<div class="login_form">
+			<div class="title_login">
+				<span>Register</span>
+			</div>
+			<div class="div_username">
+				<span>
+					Username
+				</span>
+				<i class="fa fa-user-o" aria-hidden="true"></i>
+				<input type="text" name="" placeholder="Type your username">
+			</div>
+			<div class="div_password">
+				<span>
+					Password
+				</span>
+				<i class="fa fa-lock" aria-hidden="true"></i>
+				<input type="password" name="" placeholder="Type your password">
+			</div>
+			<div class="div_username">
+				<span>
+					Re-password
+				</span>
+				<i class="fa fa-lock" aria-hidden="true"></i>
+				<input type="password" name="" placeholder="Type your re-password">
+			</div>
+			<div class="div_username">
+				<span>
+					Email
+				</span>
+				<i class="fa fa-envelope-o" aria-hidden="true"></i>
+				<input type="text" name="" placeholder="Type your Email">
+			</div>
+			<div class="div_submit">
+				<input class="input_custom" type="button" name="" value="Register">
+			</div>
+			
+			
+			<div class="close_login" (click)="showFormRegister()">
+				<i class="fa fa-2x fa-times" aria-hidden="true"></i>
+			</div>
+		</div>
+		<div class="register_form">
+			
+		</div>
+	</div>
+
