@@ -15,7 +15,13 @@ $(document).ready(function(){
 		else{
 			$('.move_top').css("display","none");
 		}
-	})
+	});
+
+	$("#btn_about_us").click(function() {
+	    $('html, body').animate({
+	        scrollTop: $("#about-us").offset().top -80
+	    }, 1000);
+	});
 })
 function onTop(){
 	window.scrollTo({ top: 0, behavior: 'smooth' });

@@ -1,8 +1,14 @@
+#update_avatar{
+	display: none;
+}
 .title_intro {
 	width: 100%;
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  font-size: 30px;
-  text-align: center;
+ 	font-family: roboto slab,serif;
+    font-weight: 700;
+    text-shadow: rgba(0,0,0,.01) 0 0 1px;
+    color: #384158;
+    font-size: 40px;
+    text-align: center;
   margin: 30px;
 }
 .vocabulary_component{
@@ -12,38 +18,53 @@
 }
 .content{
 	display: flex;
-	flex-wrap: wrap;
-	width: 80%;
-	padding: 0px 150px;
-	box-sizing: border-box;
+    flex-wrap: wrap;
+    width: 70%;
+    margin: 0px 5%;
+    padding: 50px;
+    box-sizing: border-box;
+    border: 1px solid #0000001a;
+    border-radius: 10px;
+    background: #00000008;
 }
 .topic{
-	display: block;
-	width: 20%;
-	text-align: center;
-	box-sizing: border-box;
-	padding-right: 100px;
+	display: inline-table;
+    width: 20%;
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid #0000001a;
+    border-radius: 10px;
+    background: #00000008;
+    padding: 15px 0px;
 }
 
 label{
-	background: blue;
-	opacity: 0.7;
-	color: white;
-	padding: 10px 20px;
-	border-radius: 20px;
+	position: absolute;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #00000091;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+label:hover{
+	background: #00000036;
+    opacity: 1;
 }
 
 .title_topic{
 	font-weight: bold;
 	font-size: 20px;
-	margin-bottom: 30px;
+	margin-bottom: 15px;
 }
 .button{
-	width: 150px;
-	padding: 5px;
-	border: none;
-	margin: 1px;
-    border-radius: 5px;
+	width: 100%;
+    padding: 5px;
+    border: 1px solid #4f84c41f;
+    margin: 1px 0px;
+    background: white;
 }
 .section1{
 	display: flex;

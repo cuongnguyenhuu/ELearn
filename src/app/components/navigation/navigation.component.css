@@ -1,4 +1,19 @@
-
+.button_cancel_custom {
+    padding: 10px 30px;
+    margin: 8px 0;
+    color: white;
+    background: #395498;
+    font-weight: bold;
+    border-radius: 20px;
+    border: 2px outset;
+    text-transform: uppercase;
+}
+.button_cancel_custom:hover{
+    cursor: pointer;
+    transition: .3s;
+    background: white;
+    color: #395498;
+}
 .menu{
   width: 100%;
   display: flex;
@@ -12,11 +27,12 @@
   padding: 5px 0px;
 }
 .nav-bar{
-  width: 70%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
+     width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    position: relative;
   /*color: white;*/
 }
 .nav-bar ul {
@@ -31,6 +47,7 @@
   float: left;
   /*position: relative;*/
   display: inline-table;
+  padding: 0px 2px;
 }
 .nav-bar ul li a {
   display: block;
@@ -125,6 +142,7 @@ li a:hover{
 .sub_menu{
   position: absolute;
   display: none;
+  z-index: 999999999;
 }
 .nav-bar > ul >li:hover .sub_menu{
   display: block;
