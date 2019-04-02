@@ -1,9 +1,12 @@
 .title_intro {
 	width: 100%;
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  font-size: 30px;
-  text-align: center;
-  margin: 30px;
+  	font-family: roboto slab,serif;
+    font-weight: 700;
+    text-shadow: rgba(0,0,0,.01) 0 0 1px;
+    color: #384158;
+    font-size: 40px;
+    text-align: center;
+  	margin: 30px;
 }
 .vocabulary_component{
 	display: flex;
@@ -12,17 +15,19 @@
 }
 .content{
 	display: flex;
-	flex-wrap: wrap;
-	width: 80%;
-	padding: 0px 150px;
-	box-sizing: border-box;
+    flex-wrap: wrap;
+    width: 70%;
+    padding-left: 150px;
+    padding-right: 50px;
+    box-sizing: border-box;
 }
 .topic{
-	display: block;
-	width: 20%;
-	text-align: center;
-	box-sizing: border-box;
-	padding-right: 100px;
+	display: inline-table;
+    width: 20%;
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid #4765a0;
+    padding-bottom: 10px;
 }
 .title_content{
 	display: flex;
@@ -32,19 +37,25 @@
 	width: 100%;
 }
 .label{
-	background: blue;
-	opacity: 0.7;
-	color: white;
-	padding: 10px 20px;
-	border-radius: 20px;
+	background: #4765a0;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
 }
 
 .button{
-	width: 150px;
-	padding: 5px;
-	border: none;
-	margin: 1px;
-    border-radius: 5px;
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px 15px;
+    margin: 1px;
+    border: 1px solid #0000001f;
+    background: white;
+    color: black;
+    text-decoration: none;
+}
+.buttons{
+    padding: 0px 10px;
 }
 .section2{
 	display: flex;
@@ -89,14 +100,14 @@
 
 /* Create a custom radio button */
 .checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-  border: 1px solid blue;
-  /*border-radius: 50%;*/
+  	position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border: 2px solid blue;
+    border-radius: 50%;
 }
 
 /* On mouse-over, add a grey background color */
@@ -123,10 +134,10 @@
 
 /* Style the indicator (dot/circle) */
 .radio_custom .checkmark:after {
-    top: 5px;
-    left: 5px;
-    width: 15px;
-    height: 15px;
+    top: 3px;
+    left: 3px;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
     background: blue;
 }
@@ -134,3 +145,11 @@
 	justify-content: center;
 	align-items: center;
 }
+.title_topic {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+    background: #4765a0;
+    color: #fff;
+    padding: 5px 15px;
+ }

@@ -20,6 +20,7 @@ import { ContentGrammarComponent } from './components/content-grammar/content-gr
 import { ContentTestComponent } from './components/content-test/content-test.component';
 import { ContentProfileComponent } from './components/content-profile/content-profile.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { CourseComponent } from './components/course/course.component';
 
 
 const appRoutes: Routes = [
@@ -32,8 +33,8 @@ const appRoutes: Routes = [
     component: ContentCommunityComponent
   },
    {
-    path: 'level',
-    component: ContentGrammarComponent
+    path: 'level/:course',
+    component: CourseComponent
   },
    {
     path: 'test',
@@ -42,6 +43,18 @@ const appRoutes: Routes = [
    {
     path: 'profile',
     component: ContentProfileComponent
+  },
+  {
+    path: 'level/b1/grammar',
+    component: ContentGrammarComponent
+  },
+  {
+    path: 'level/b1/test',
+    component: ContentTestComponent
+  },
+  {
+    path: 'level/b1/vocabulary',
+    component: ContentVocabularyComponent
   },
    {
     path: '**',
@@ -68,7 +81,8 @@ const appRoutes: Routes = [
     ContentGrammarComponent,
     ContentTestComponent,
     ContentProfileComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    CourseComponent
   ],
   imports: [
     BrowserModule,

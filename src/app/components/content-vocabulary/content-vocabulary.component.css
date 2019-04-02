@@ -1,9 +1,12 @@
 .title_intro {
 	width: 100%;
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  font-size: 30px;
-  text-align: center;
-  margin: 30px;
+  	font-family: roboto slab,serif;
+    font-weight: 700;
+    text-shadow: rgba(0,0,0,.01) 0 0 1px;
+    color: #384158;
+    font-size: 40px;
+    text-align: center;
+  	margin: 30px;
 }
 .vocabulary_component{
 	display: flex;
@@ -12,17 +15,19 @@
 }
 .content{
 	display: flex;
-	flex-wrap: wrap;
-	width: 80%;
-	padding: 0px 150px;
-	box-sizing: border-box;
+    flex-wrap: wrap;
+    width: 70%;
+    padding-left: 150px;
+    padding-right: 50px;
+    box-sizing: border-box;
 }
 .topic{
-	display: block;
-	width: 20%;
-	text-align: center;
-	box-sizing: border-box;
-	padding-right: 100px;
+	display: inline-table;
+    width: 20%;
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid #4765a0;
+    padding-bottom: 10px;
 }
 .title_content{
 	display: flex;
@@ -32,8 +37,7 @@
 	width: 100%;
 }
 label{
-	background: blue;
-	opacity: 0.7;
+	background: #4765a0;
 	color: white;
 	padding: 10px 20px;
 	border-radius: 20px;
@@ -57,13 +61,24 @@ label{
 }
 .title_topic{
 	font-weight: bold;
-	font-size: 20px;
-	margin-bottom: 30px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    background: #4765a0;
+    color: #fff;
+    padding: 5px 15px;
 }
 .button{
-	width: 150px;
-	padding: 5px;
-	border: none;
-	margin: 1px;
-    border-radius: 5px;
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /*width: 100%;*/
+    padding: 10px 15px;
+    margin: 1px;
+    border: 1px solid #0000001f;
+    background: white;
+    color: black;
+    text-decoration: none;
+}
+.buttons{
+	padding: 0px 10px;
 }

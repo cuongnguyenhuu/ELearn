@@ -52,6 +52,7 @@
     border: 1px solid #00000033;
     border-radius: 5px;
     height: auto;
+    padding-bottom: 10px;
 }
 .section1{
 	display: flex;
@@ -149,13 +150,12 @@
     justify-content: center;
     width: 100%;
     box-sizing: border-box;
-    /*font-size: 20px;*/
     padding: 10px;
     font-weight: bold;
-    color: #000000bd;
-    border-bottom: 1px solid #00000017;
-    background: #e9ebee2e;
-	/*text-align: center;*/
+    color: white;
+    border-bottom: 1px solid #4765a0;
+    background: #4765a0;
+    margin-bottom: 10px;
 }
 .options{
 	display: flex;
@@ -197,9 +197,9 @@
 .header_post{
 	padding: 10px;
     font-weight: bold;
-    color: #000000bd;
+    color: white;
     border-bottom: 1px solid #00000017;
-    background: #e9ebee2e;
+    background: #4765a0;
 }
 .main_post{
 	padding: 10px;
@@ -304,7 +304,7 @@
 }
 .button_cancel_custom {
     text-align-last: center;
-    width: 100%;
+    width: 90%;
     padding: 10px 30px;
     margin: 1px 0;
     border: 1px solid #4f84c421;
