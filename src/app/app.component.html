@@ -7,7 +7,7 @@
 </head> -->
 <body>
 	<app-header (value)="getValue($event)"></app-header>
-	<app-navigation *ngIf="showMenu" (value)="getValue($event)"></app-navigation>
+	<app-navigation (value)="getValue($event)"></app-navigation>
 		<router-outlet></router-outlet>
 	<app-contact></app-contact>
 	
