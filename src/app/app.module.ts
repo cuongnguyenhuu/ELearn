@@ -1,61 +1,33 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule  } from '@angular/core';
 import { RouterModule,Routes } from '@angular/router';
+import { HomeModule } from './home/home.module';
+import { CommunityModule } from './community/community.module';
+import { CourseModule } from './course/course.module';
+import { GrammarModule } from './grammar/grammar.module';
+import { TestModule } from './test/test.module';
+import { VocabularyModule } from './vocabulary/vocabulary.module';
+import { ProfileModule } from './profile/profile.module';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { FounderComponent } from './components/founder/founder.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { IntroduceComponent } from './components/introduce/introduce.component';
-import { CommunnityComponent } from './components/communnity/communnity.component';
-import { ContentHomeComponent } from './components/content-home/content-home.component';
+
 import { VocabularyComponent } from './components/vocabulary/vocabulary.component';
 import { GrammarComponent } from './components/grammar/grammar.component';
 import { TestComponent } from './components/test/test.component';
-import { ContentCommunityComponent } from './components/content-community/content-community.component';
-import { ContentVocabularyComponent } from './components/content-vocabulary/content-vocabulary.component';
-import { ContentGrammarComponent } from './components/content-grammar/content-grammar.component';
-import { ContentTestComponent } from './components/content-test/content-test.component';
-import { ContentProfileComponent } from './components/content-profile/content-profile.component';
+
 import { NotfoundComponent } from './components/notfound/notfound.component';
-import { CourseComponent } from './components/course/course.component';
-
-
+ 
+ import { NgxSpinnerModule } from 'ngx-spinner';
+//service
+import { LoginService} from'./services/login.service'
+import { ProfileService } from './services/profile.service'
 const appRoutes: Routes = [
- {
-    path: '',
-    component: ContentHomeComponent
-  },
-  {
-    path: 'community',
-    component: ContentCommunityComponent
-  },
-   {
-    path: 'level/:course',
-    component: CourseComponent
-  },
-   {
-    path: 'test',
-    component: ContentTestComponent
-  },
-   {
-    path: 'profile',
-    component: ContentProfileComponent
-  },
-  {
-    path: 'level/b1/grammar',
-    component: ContentGrammarComponent
-  },
-  {
-    path: 'level/b1/test',
-    component: ContentTestComponent
-  },
-  {
-    path: 'level/b1/vocabulary',
-    component: ContentVocabularyComponent
-  },
    {
     path: '**',
     component: NotfoundComponent
@@ -68,28 +40,31 @@ const appRoutes: Routes = [
     AppComponent,
     HeaderComponent,
     NavigationComponent,
-    FounderComponent,
-    ContactComponent,
-    IntroduceComponent,
-    CommunnityComponent,
-    ContentHomeComponent,
+   ContactComponent,   
     VocabularyComponent,
     GrammarComponent,
     TestComponent,
-    ContentCommunityComponent,
-    ContentVocabularyComponent,
-    ContentGrammarComponent,
-    ContentTestComponent,
-    ContentProfileComponent,
-    NotfoundComponent,
-    CourseComponent
+    NotfoundComponent
   ],
   imports: [
+    NgxSpinnerModule,
+    HttpClientModule,
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
+    HomeModule,
+    CommunityModule,
+    CourseModule,
+    GrammarModule,
+    TestModule,
+    VocabularyModule,
+    ProfileModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    LoginService,
+    ProfileService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

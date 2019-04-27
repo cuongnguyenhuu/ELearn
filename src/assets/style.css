@@ -1,3 +1,6 @@
+.overlay{
+  position: fixed !important;
+}
 *{
   margin-top: 0px;
 }

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<!-- <link rel="stylesheet" type="text/css" href="./../../assets/style.css"> -->
+</head>
+<body>
+ 	<div class="vocabulary_component">
+ 		<div class="title_intro">
+			<span>Profile</span>
+		</div>
+		<div class="content">
+			<div class="section1">
+				<div class="section2">
+					<span>Avatar</span>
+				</div>
+				<div class="section3">
+					<img class="img_user" src="./../../../assets/images/user.png" width="70px" height="70px" *ngIf="profile.img==null">
+					<img *ngIf="profile.img!=null" class="img_user" src="https://elearn-anhhong.c9users.io/images/{{profile.img}}" width="70px" height="70px">
+					<label for="update_avatar"><i class="fa fa-camera" aria-hidden="true"></i></label>
+					<input id="update_avatar" class="input_custom" type="file" name="" value="Change" (change)="uploadImg($event)">
+				</div>
+				<!-- <div class="section4">
+					<input class="input_custom" type="file" name="" value="Change">
+				</div> -->
+			</div>
+			<div class="section1">
+				<div class="section2">
+					<span>Username</span>
+				</div>
+				<div class="section3">
+					<input class="input_custom" type="text" name="" value="{{profile.username}}" readonly>
+				</div>
+				<div class="section4">
+					<!-- <i class="fa fa-pencil-square-o" aria-hidden="true"></i> -->
+				</div>
+			</div>
+			<!-- <div class="section1">
+				<div class="section2">
+					<span>Password</span>
+				</div>
+				<div class="section3">
+					<input class="input_custom" type="text" name="" readonly>
+				</div>
+				<div class="section4">
+					<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+				</div>
+			</div> -->
+			<div class="section1">
+				<div class="section2">
+					<span>Full name</span>
+				</div>
+				<div class="section3">
+					<input class="input_custom" type="text" name="" value="{{profile.name}}" readonly>
+				</div>
+				<div class="section4">
+					<i class="fa fa-pencil-square-o" aria-hidden="true" (click)="toggle_dialog('name')"></i>
+				</div>
+			</div>
+			<div class="section1">
+				<div class="section2">
+					<span>Birthday</span>
+				</div>
+				<div class="section3">
+					<input class="input_custom" type="text" name="" value="{{profile.birthday}}" readonly>
+				</div>
+				<div class="section4">
+					<i class="fa fa-pencil-square-o" aria-hidden="true" (click)="toggle_dialog('birthday')"></i>
+				</div>
+			</div>
+			<div class="section1">
+				<div class="section2">
+					<span>Address</span>
+				</div>
+				<div class="section3">
+					<input class="input_custom" type="text" name="" value="{{profile.address}}" readonly>
+				</div>
+				<div class="section4">
+					<i class="fa fa-pencil-square-o" aria-hidden="true" (click)="toggle_dialog('address')"></i>
+				</div>
+			</div>
+			<!-- <div class="section1">
+				<div class="section2">
+					<span>Address</span>
+				</div>
+				<div class="section3">
+					<input class="input_custom" type="text" name="" value="{{profile.address}}" readonly>
+				</div>
+				<div class="section4">
+					<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+				</div>
+			</div> -->
+			<div class="section1">
+				<div class="section2">
+					<span>Email</span>
+				</div>
+				<div class="section3">
+					<input class="input_custom" type="text" name="" value="{{profile.email}}" readonly>
+				</div>
+				<div class="section4">
+					<i class="fa fa-pencil-square-o" aria-hidden="true" (click)="toggle_dialog('email')"></i>
+				</div>
+			</div>
+			<div class="section1">
+				<div class="section2">
+					<span>Gender</span>
+				</div>
+				<div class="section3">
+					<input class="input_custom" type="text" name="" value="{{profile.gender?'Male':'Female'}}" readonly>
+				</div>
+				<div class="section4">
+					<i class="fa fa-pencil-square-o" aria-hidden="true" (click)="toggle_dialog('gender')"></i>
+				</div>
+			</div>
+			<div class="section1">
+				<div class="section2">
+					<span>Phone number</span>
+				</div>
+				<div class="section3">
+					<input class="input_custom" type="text" name="" value="{{profile.phone}}" readonly>
+				</div>
+				<div class="section4">
+					<i class="fa fa-pencil-square-o" aria-hidden="true" (click)="toggle_dialog('phone number')"></i>
+				</div>
+			</div>
+		</div>
+		<div class="topic">
+			<div class="title_topic">
+				<span><i class="fa fa-bars" aria-hidden="true"></i>  Topic</span>
+			</div>
+			<div class="buttons">
+				<input class="button" type="button" name="" value="Profile">
+				<input class="button" type="button" name="" value="My bookmark">
+				<input class="button" type="button" name="" value="History">
+				<input class="button" type="button" name="" value="Change password" (click)="toggle_dialog('password')">
+				<input class="button" type="button" name="" value="Logout" (click)="logout()">
+			</div>
+		</div>
+ 	</div>
+ 	<div *ngIf="dialog_edit" class="dialog" >
+ 		<div (click)="toggle_dialog(name)"></div>
+	 	<dialog [open]="dialog_edit">
+	 		<span>Change {{name}}</span>
+	 		<i class="fa fa-times" aria-hidden="true" (click)="toggle_dialog(name)" ></i>
+	 		<br>
+	 		<br>
+	 		<input *ngIf="name=='password'" class="input_custom" type="password" name="" placeholder="Type your password..." [(ngModel)]="password_old">
+	 		<input *ngIf="name!='gender'" class="input_custom" [type]="name=='password'?'password':'text'" name="" placeholder="Type your change..." [(ngModel)]="value_dialog" value="{{value_dialog}}">
+	 		<input *ngIf="name=='password'" [(ngModel)]="rePassword" class="input_custom" type="password" name="" placeholder="Retype your change...">
+	 		<select *ngIf="name=='gender'" class="input_custom" [(ngModel)]="value_dialog">
+	 			<option [selected]="profile.gender==true" value="true">Male</option>
+	 			<option [selected]="profile.gender==false" value="false">Female</option>
+	 		</select>
+	 		<br>
+	 		<br>
+	 		<input *ngIf="name!='password'" class="done" type="button" name="" value="done" (click)="update()">
+	 		<input *ngIf="name=='password'" class="done" type="button" name="" value="done" (click)="changePassword()">
+	 		<input  type="button" name="" value="cancel" (click)="toggle_dialog(name)">
+	 	</dialog>
+ 	</div>
+ 	<!-- <ngx-spinner
+	bdColor = "rgba(51,51,51,0)"
+	size = "medium"
+	color = "#000000"
+	type = "ball-spin-fade"
+	>
+	<p style="color: white" > Loading... </p>
+	</ngx-spinner> -->
+	
+</body>
+</html>

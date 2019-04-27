@@ -5,10 +5,11 @@
 	<link rel="stylesheet" href="./../assets/font-awesome-4.7.0/css/font-awesome.min.css">
 	
 </head> -->
-<body style="margin: 0 50px;">
-	<app-header></app-header>
-	<app-navigation></app-navigation>
+<body>
+	<app-header (value)="getValue($event)"></app-header>
+	<app-navigation *ngIf="showMenu" (value)="getValue($event)"></app-navigation>
 		<router-outlet></router-outlet>
 	<app-contact></app-contact>
+	
 </body>
 <!-- </html> -->

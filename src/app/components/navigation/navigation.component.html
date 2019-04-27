@@ -2,40 +2,41 @@
 	<div class="menu">
 		<div class="nav-bar">
 			<ul>
-			  <li routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}"><a  [routerLink]="['/']">Home</a></li>
-			  <li routerLinkActive="active" class=""><a [routerLink]="['/community']">Community</a></li>
+			  <li routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}"><a  [routerLink]="['/']" (click)="toggleMenu()">Home</a></li>
+			  <li routerLinkActive="active" class=""><a [routerLink]="['/community']" (click)="toggleMenu()">Community</a></li>
 			  <li routerLinkActive="active" class="">
-			  	<a href="">Courses</a>
-					<ul class="sub_menu">
-						<li routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}" ><a [routerLink]="['/level/b1']">B1</a></li>
-						<li routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}" ><a [routerLink]="['/level/toeic']">Toeic</a></li>
-						<li routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}" ><a [routerLink]="['/level/ielts']">Ielts</a></li>
+			  	<a (click)="toggleSubMenu()">Courses</a>
+					<ul class="sub_menu" *ngIf="showSubMenu">
+						<li routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}" ><a (click)="toggleMenu()" [routerLink]="['/level/b1']">B1</a></li>
+						<li routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}" ><a (click)="toggleMenu()" [routerLink]="['/level/toeic']">Toeic</a></li>
+						<li routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}" ><a (click)="toggleMenu()" [routerLink]="['/level/ielts']">Ielts</a></li>
 					</ul>
 			  </li>
 			  <!-- <li routerLinkActive="active" class=""><a [routerLink]="['/test']">Test</a></li> -->
 			  <!-- <li routerLinkActive="active" class=""><a [routerLink]="['/bookmark']">Bookmark</a></li> -->
-			  <li routerLinkActive="active"><a [routerLink]="['/profile']">Profile</a></li>
-			  <li ><a id="btn_about_us" href="#">About us</a></li>
+			  <li routerLinkActive="active" *ngIf="isLogin"><a (click)="toggleMenu()" [routerLink]="['/profile']">Profile</a></li>
+			  <li ><a (click)="toggleMenu()" id="btn_about_us" href="#">About us</a></li>
 			</ul>
 		</div>
-		<div class="section usernameAndAvatar">
-			<a href="#"><span>Hello, User</span></a>
-			<a href="#"><img class="img_user" src="./../../../assets/images/user.png" width="30px" height="30px"></a>
-			
+		<div class="section usernameAndAvatar" *ngIf="isLogin">
+			<a href="#" ><span>{{name}}</span>
+			<img *ngIf="imgId==null" class="img_user" src="./../../../assets/images/user.png" width="30px" height="30px">
+			<img  *ngIf="imgId!=null" class="img_user" src="https://elearn-anhhong.c9users.io/images/{{imgId}}" width="30px" height="30px">
+			</a>
 		</div>
 
 
 
-		<div class="section div_login">
+		<div class="section div_login" *ngIf="!isLogin">
 			<input class="button_cancel_custom" (click)="showFormLogin()" type="button" name="" value="Login">
 		</div>
-		<div class="section div_register">
+		<div class="section div_register" *ngIf="!isLogin">
 			<input class="button_cancel_custom" (click)="showFormRegister()" type="button" name="" value="Register">
 		</div>
 
 
 
-		<div class="section notify">
+		<div class="section notify" *ngIf="isLogin">
 			
 			<span class="text_notify">
 				Notify
@@ -44,7 +45,7 @@
 				<div class="img_bell"><i class="fa fa-bell" aria-hidden="true"></i></div>
 				<span class="notify_quantity">3</span>
 			</div>
-			<div class="detail_notify" *ngIf="isShow">
+			<div class="detail_notify" *ngIf="isShowDetailNotify">
 				<a href="#">
 					<div class="img">
 						<img class="img_user" src="./../../../assets/images/user.png" width="50px" height="50px">
@@ -76,6 +77,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="form" *ngIf="formLogin">
 		<div class="background" (click)="showFormLogin()"></div>
 		<div class="login_form">
@@ -87,20 +89,24 @@
 					Username
 				</span>
 				<i class="fa fa-user-o" aria-hidden="true"></i>
-				<input type="text" name="" placeholder="Type your username">
+				<input type="text" name="" placeholder="Type your username" [(ngModel)]="username_login">
 			</div>
 			<div class="div_password">
 				<span>
 					Password
 				</span>
 				<i class="fa fa-lock" aria-hidden="true"></i>
-				<input type="password" name="" placeholder="Type your password">
+				<input type="password" name="" placeholder="Type your password" [(ngModel)]="password_login" 
+				(keydown.enter)="login()">
 			</div>
 			<div class="forgot">
 				<a href="">Forgot password ?</a>
 			</div>
+			<div class="message_error" *ngIf="message_error!=''">
+				<span>{{message_error}}</span>
+			</div>
 			<div class="div_submit">
-				<input class="input_custom" type="button" name="" value="Login">
+				<input class="input_custom" type="button" name="" value="Login" (click)="login()"  >
 			</div>
 			<div class="orther">
 				<span>Or login with</span>
@@ -129,31 +135,43 @@
 					Username
 				</span>
 				<i class="fa fa-user-o" aria-hidden="true"></i>
-				<input type="text" name="" placeholder="Type your username">
+				<input type="text" name="" placeholder="Type your username" [(ngModel)]="username_reg">
 			</div>
 			<div class="div_password">
 				<span>
 					Password
 				</span>
 				<i class="fa fa-lock" aria-hidden="true"></i>
-				<input type="password" name="" placeholder="Type your password">
+				<input type="password" name="" placeholder="Type your password" [(ngModel)]="password_reg">
 			</div>
 			<div class="div_username">
 				<span>
 					Re-password
 				</span>
 				<i class="fa fa-lock" aria-hidden="true"></i>
-				<input type="password" name="" placeholder="Type your re-password">
+				<input type="password" name="" placeholder="Type your re-password" [(ngModel)]="rePassword_red">
+			</div>
+			<div class="div_username">
+				<span>
+					Full name
+				</span>
+				<i class="fa fa-user-o" aria-hidden="true"></i>
+				<input type="text" name="" placeholder="Type your name" [(ngModel)]="fullName">
 			</div>
 			<div class="div_username">
 				<span>
 					Email
 				</span>
 				<i class="fa fa-envelope-o" aria-hidden="true"></i>
-				<input type="text" name="" placeholder="Type your Email">
+				<input type="text" name="" placeholder="Type your Email" [(ngModel)]="email" (keydown.enter)="register()">
+			</div>
+			<br>
+			<br>
+			<div class="message_error" *ngIf="message_error!=''">
+				<span>{{message_error}}</span>
 			</div>
 			<div class="div_submit">
-				<input class="input_custom" type="button" name="" value="Register">
+				<input class="input_custom" type="button" name="" value="Register" (click)="register()">
 			</div>
 			
 			
@@ -165,5 +183,13 @@
 			
 		</div>
 	</div>
-
+	<ngx-spinner
+	bdColor = "rgba(0,0,0,0.29)"
+	size = "medium"
+	color = "#000000"
+	type = "ball-spin-fade"
+	[fullScreen] = "true"
+	>
+	<!-- <p style="color: white" > Upload... </p> -->
+	</ngx-spinner>
 <!-- <div class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div> -->
