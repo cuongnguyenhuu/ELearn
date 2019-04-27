@@ -11,7 +11,7 @@ import { Profile } from './../../models/profile.class'
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-  @Output() value = new EventEmitter();
+  @Output() value_click = new EventEmitter();
   constructor(
     public loginService : LoginService,
     private profileService: ProfileService,
@@ -53,7 +53,7 @@ export class NavigationComponent implements OnInit {
   }
   toggleMenu(){
     if(window.innerWidth<=768){
-    this.value.emit("clicked");
+    this.value_click.emit("clicked");
     }
   }
   getProfile(){
