@@ -475,6 +475,9 @@ dialog{
     height: auto;
     border: none;
 }
+.icon_bars{
+  display: none;
+}
 @media (max-width: 991.98px) { 
   .login_form{
     width: 50%;
@@ -506,6 +509,14 @@ dialog{
   }
 }
 @media (max-width: 767.98px) {
+  .icon_bars{
+    display: block;
+    width: auto;
+    position: absolute;
+    top: 32px;
+    right: 40px;
+    color: #4F84C4;
+  }
   .login_form{
         width: 60%;
   }
@@ -513,6 +524,7 @@ dialog{
     width: 60%;
     position: absolute;
     right: 10px;
+    top: 75px;
   }
   
   .nav-bar{

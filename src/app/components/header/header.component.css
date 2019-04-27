@@ -132,4 +132,13 @@ a{
 	.textLogo{
 		display: none;
 	}
+	.icon_bars{
+		width: 20%;
+	}
+	.logo{
+		width: 20%;
+	}
+	.search{
+		width: 60%;
+	}
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter,HostListener } from '@angular/core';
 import { LoginService } from'./../../services/login.service'
 import { ProfileService } from './../../services/profile.service'
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -11,7 +11,18 @@ import { Profile } from './../../models/profile.class'
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-  @Output() value_click = new EventEmitter();
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if(window.innerWidth>768){
+      this.showMenu = true;
+    }
+    else{
+      this.showMenu = false;
+    }
+    console.log(window.innerWidth);
+
+    console.log(this.showMenu);
+  }
   constructor(
     public loginService : LoginService,
     private profileService: ProfileService,
