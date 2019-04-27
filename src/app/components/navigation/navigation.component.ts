@@ -68,11 +68,6 @@ export class NavigationComponent implements OnInit {
   toggleSubMenu(){
     this.showSubMenu=!this.showSubMenu;
   }
-  toggleMenu(){
-    if(window.innerWidth<=768){
-    this.value_click.emit("clicked");
-    }
-  }
   getProfile(){
     this.profileService.getProfile();
     this.profileService.profile.subscribe(data=>{
@@ -102,7 +97,12 @@ export class NavigationComponent implements OnInit {
   toggle(){
   	this.isShowDetailNotify = !this.isShowDetailNotify;
   }
-
+  toggleMenu(){
+    if(window.innerWidth<=768){
+      this.showMenu =!this.showMenu;
+    }
+    this.showSubMenu=false;
+  }
   showFormLogin(){
     // this.value.emit("clicked");
     this.formLogin = !this.formLogin;

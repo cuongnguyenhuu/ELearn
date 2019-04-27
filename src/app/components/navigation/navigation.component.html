@@ -2,24 +2,24 @@
 	<div class="menu" *ngIf="showMenu">
 		<div class="nav-bar">
 			<ul>
-			  <li routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}"><a  [routerLink]="['/']" (click)="toggleMenu()">Home</a></li>
-			  <li routerLinkActive="active" class=""><a [routerLink]="['/community']" (click)="toggleMenu()">Community</a></li>
+			  <li routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}"><a (click)="toggleMenu()"  [routerLink]="['/']" >Home</a></li>
+			  <li routerLinkActive="active" class=""><a (click)="toggleMenu()"  [routerLink]="['/community']" >Community</a></li>
 			  <li routerLinkActive="active" class="">
 			  	<a (click)="toggleSubMenu()">Courses</a>
 					<ul class="sub_menu" *ngIf="showSubMenu">
-						<li routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}" ><a (click)="toggleMenu()" [routerLink]="['/level/b1']">B1</a></li>
-						<li routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}" ><a (click)="toggleMenu()" [routerLink]="['/level/toeic']">Toeic</a></li>
-						<li routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}" ><a (click)="toggleMenu()" [routerLink]="['/level/ielts']">Ielts</a></li>
+						<li routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}" ><a (click)="toggleMenu()"   [routerLink]="['/level/b1']">B1</a></li>
+						<li routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}" ><a (click)="toggleMenu()"   [routerLink]="['/level/toeic']">Toeic</a></li>
+						<li routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}" ><a (click)="toggleMenu()"   [routerLink]="['/level/ielts']">Ielts</a></li>
 					</ul>
 			  </li>
 			  <!-- <li routerLinkActive="active" class=""><a [routerLink]="['/test']">Test</a></li> -->
 			  <!-- <li routerLinkActive="active" class=""><a [routerLink]="['/bookmark']">Bookmark</a></li> -->
-			  <li routerLinkActive="active" *ngIf="isLogin"><a (click)="toggleMenu()" [routerLink]="['/profile']">Profile</a></li>
-			  <li ><a (click)="toggleMenu()" id="btn_about_us" href="#">About us</a></li>
+			  <li routerLinkActive="active" *ngIf="isLogin"><a (click)="toggleMenu()"  [routerLink]="['/profile']">Profile</a></li>
+			  <li ><a (click)="toggleMenu()"  id="btn_about_us" href="#">About us</a></li>
 			</ul>
 		</div>
 		<div class="section usernameAndAvatar" *ngIf="isLogin">
-			<a href="#" ><span>{{name}}</span>
+			<a href="#" (click)="toggleMenu()"  ><span>{{name}}</span>
 			<img *ngIf="imgId==null" class="img_user" src="./../../../assets/images/user.png" width="30px" height="30px">
 			<img  *ngIf="imgId!=null" class="img_user" src="https://elearn-anhhong.c9users.io/images/{{imgId}}" width="30px" height="30px">
 			</a>
