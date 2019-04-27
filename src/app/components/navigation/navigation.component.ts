@@ -39,7 +39,7 @@ export class NavigationComponent implements OnInit {
   fullName:string='';
   email:string='';
   showSubMenu:boolean=false;
-  showMenu:boolean = true;
+  showMenu:boolean = false;
   ngOnInit() {
     if (localStorage.getItem("token")!=null) {
       this.isLogin = true;
@@ -47,6 +47,12 @@ export class NavigationComponent implements OnInit {
     }
     else
       this.isLogin =false;
+     if(window.innerWidth>=768){
+       this.showMenu=true;
+     }
+  }
+  test(){
+    this.showMenu=!this.showMenu;
   }
   toggleSubMenu(){
     this.showSubMenu=!this.showSubMenu;

@@ -7,7 +7,7 @@
 </head> -->
 <body>
 	<app-header (value_click)="getValue($event)"></app-header>
-	<app-navigation [style.display]="showMenu==true?'block':'none'" (value_click)="getValue($event)"></app-navigation>
+	<app-navigation></app-navigation>
 		<router-outlet></router-outlet>
 	<app-contact></app-contact>
 	
