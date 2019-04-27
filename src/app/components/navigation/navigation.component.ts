@@ -39,7 +39,7 @@ export class NavigationComponent implements OnInit {
   fullName:string='';
   email:string='';
   showSubMenu:boolean=false;
-
+  showMenu:boolean = true;
   ngOnInit() {
     if (localStorage.getItem("token")!=null) {
       this.isLogin = true;
@@ -90,11 +90,17 @@ export class NavigationComponent implements OnInit {
     // this.value.emit("clicked");
     this.formLogin = !this.formLogin;
     this.message_error='';
+    if(window.innerWidth<=768){
+      this.showMenu =!this.showMenu;
+    }
   }
   showFormRegister(){
     // this.value.emit("clicked");
     this.formRegister = !this.formRegister;
     this.message_error='';
+    if(window.innerWidth<=768){
+      this.showMenu =!this.showMenu;
+    }
   }
   login(){
     console.log(this.username_login+"/"+ this.password_login);
