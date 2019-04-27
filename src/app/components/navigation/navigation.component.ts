@@ -87,10 +87,12 @@ export class NavigationComponent implements OnInit {
   }
 
   showFormLogin(){
+    // this.value.emit("clicked");
     this.formLogin = !this.formLogin;
     this.message_error='';
   }
   showFormRegister(){
+    // this.value.emit("clicked");
     this.formRegister = !this.formRegister;
     this.message_error='';
   }

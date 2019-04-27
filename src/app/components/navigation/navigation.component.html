@@ -80,6 +80,7 @@
 
 	<div class="form" *ngIf="formLogin">
 		<div class="background" (click)="showFormLogin()"></div>
+		<dialog [open]="formLogin">
 		<div class="login_form">
 			<div class="title_login">
 				<span>Login</span>
@@ -120,12 +121,14 @@
 				<i class="fa fa-2x fa-times" aria-hidden="true"></i>
 			</div>
 		</div>
+	</dialog>
 		<div class="register_form">
 			
 		</div>
 	</div>
 	<div class="form" *ngIf="formRegister">
 		<div class="background" (click)="showFormRegister()"></div>
+		<dialog [open]="formRegister">
 		<div class="login_form">
 			<div class="title_login">
 				<span>Register</span>
@@ -179,6 +182,7 @@
 				<i class="fa fa-2x fa-times" aria-hidden="true"></i>
 			</div>
 		</div>
+		</dialog>
 		<div class="register_form">
 			
 		</div>
