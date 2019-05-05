@@ -61,7 +61,19 @@
 }
 .icon_search{
 	position: absolute;
-	left: 10px;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 30px;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+}
+.icon_search:hover{
+	cursor: pointer;
+    background: #4f84c4;
+    color: white;
 }
 .icon_facebook{
 

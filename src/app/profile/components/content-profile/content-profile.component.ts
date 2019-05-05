@@ -20,12 +20,13 @@ export class ContentProfileComponent implements OnInit {
   password_new:string
   rePassword:string;
   dialog_edit:boolean =false;
-  value_dialog:string;
+  value_dialog:any;
   name:string;
   profile_data : any;
   profile : Profile = new Profile();
   filetoUpload: File = null;
   imgId:string;
+  messageError:string='';
   ngOnInit() {
   	this.getProfile();
   }
@@ -70,6 +71,7 @@ export class ContentProfileComponent implements OnInit {
   	this.loginService.logout();
   }
   toggle_dialog(name:string){
+    this.messageError='';
     this.name = name;
     this.dialog_edit = !this.dialog_edit;
     switch (name) {
@@ -77,7 +79,9 @@ export class ContentProfileComponent implements OnInit {
         this.value_dialog=this.profile.name;
         break;
       case "birthday":
-        this.value_dialog=this.profile.birthday.toString();
+        let date = new Date(this.profile.birthday);
+        this.value_dialog=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+(date.getDate()<10?'0'+date.getDate():date.getDate());
+        // console.log(this.value_dialog);
         break;
       case "address":
         this.value_dialog=this.profile.address;
@@ -104,29 +108,56 @@ export class ContentProfileComponent implements OnInit {
     this.spinner.show();
     switch (this.name) {
       case "name":
-        this.profile.name = this.value_dialog;
+        var re = /^[a-z\u00A1-\uFFFF\s]*$/m;
+        if(re.test(String(this.value_dialog).toLowerCase())){
+          this.profile.name = this.value_dialog;
+          this.messageError='';
+        }else{
+          this.messageError='Your name is invalid !'
+        }
         break;
       case "birthday":
-        this.profile.birthday = Number.parseInt(this.value_dialog);
+        this.profile.birthday = Date.parse(this.value_dialog).toString();
+        // console.log( Date.parse(this.value_dialog).toString());
         break;
       case "address":
         this.profile.address = this.value_dialog;
         break;
       case "email":
-        this.profile.email = this.value_dialog;
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(re.test(String(this.value_dialog).toLowerCase())){
+          this.profile.email = this.value_dialog;
+          this.messageError='';
+        }
+        else{
+          this.messageError = "Your email invalid !"
+        }
+        
         break;
       case "gender":
         this.profile.gender = this.value_dialog=='true'?true:false;
         break;
       case "phone number":
+        var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        if(phoneno.test(String(this.value_dialog))){
         this.profile.phone = this.value_dialog;
+          this.messageError='';
+        }else{
+          this.messageError = "Your phone number invalid !"
+        }
         break;
       default:
         // code...
         break;
     }
-    this.toggle_dialog(name);
-    this.updateProfile();
+    
+    if(this.messageError==''){
+      this.toggle_dialog(name);
+      this.updateProfile();
+    }
+    else{
+      this.spinner.hide();
+    }
     console.log(this.value_dialog);
   }
   updateProfile(){

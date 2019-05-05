@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	<!-- <link rel="stylesheet" type="text/css" href="./../../assets/style.css"> -->
-</head>
-<body>
+
  	<div class="vocabulary_component">
  		<div class="title_intro">
 			<span>Profile</span>
@@ -62,7 +56,7 @@
 					<span>Birthday</span>
 				</div>
 				<div class="section3">
-					<input class="input_custom" type="text" name="" value="{{profile.birthday}}" readonly>
+					<input class="input_custom" type="text" name="" value="{{profile.birthday| date:'dd-MM-yyyy'}}" readonly>
 				</div>
 				<div class="section4">
 					<i class="fa fa-pencil-square-o" aria-hidden="true" (click)="toggle_dialog('birthday')"></i>
@@ -145,13 +139,15 @@
 	 		<br>
 	 		<br>
 	 		<input *ngIf="name=='password'" class="input_custom" type="password" name="" placeholder="Type your password..." [(ngModel)]="password_old">
-	 		<input *ngIf="name!='gender'" class="input_custom" [type]="name=='password'?'password':'text'" name="" placeholder="Type your change..." [(ngModel)]="value_dialog" value="{{value_dialog}}">
+	 		<input *ngIf="name!='gender'&&name!='birthday'" class="input_custom" [type]="name=='password'?'password':'text'" name="" placeholder="Type your change..." [(ngModel)]="value_dialog" value="{{value_dialog}}">
 	 		<input *ngIf="name=='password'" [(ngModel)]="rePassword" class="input_custom" type="password" name="" placeholder="Retype your change...">
+	 		<input *ngIf="name=='birthday'" class="input_custom" type="date" name="" placeholder="Type your change..." [(ngModel)]="value_dialog" value="{{value_dialog}}">
 	 		<select *ngIf="name=='gender'" class="input_custom" [(ngModel)]="value_dialog">
 	 			<option [selected]="profile.gender==true" value="true">Male</option>
 	 			<option [selected]="profile.gender==false" value="false">Female</option>
 	 		</select>
 	 		<br>
+	 		<div class="messageError" *ngIf="messageError!=''"><span>{{messageError}}</span></div>
 	 		<br>
 	 		<input *ngIf="name!='password'" class="done" type="button" name="" value="done" (click)="update()">
 	 		<input *ngIf="name=='password'" class="done" type="button" name="" value="done" (click)="changePassword()">
@@ -167,5 +163,3 @@
 	<p style="color: white" > Loading... </p>
 	</ngx-spinner> -->
 	
-</body>
-</html>

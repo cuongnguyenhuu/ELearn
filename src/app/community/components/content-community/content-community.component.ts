@@ -1,11 +1,15 @@
 import { Component, OnInit,HostListener  } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Router, ActivatedRoute } from '@angular/router';
 //service
 import { PostService } from './../../../services/post.service'
 import { ProfileService } from './../../../services/profile.service'
+import { TagService } from './../../../services/tag.service'
 //models
 import { Post } from './../../../models/post.class';
 import { Comment } from './../../../models/comment.class';
+//directive
+import { ClickOutside } from './../../../directive/clickOutSide.directive'
 @Component({
   selector: 'app-content-community',
   templateUrl: './content-community.component.html',
@@ -36,19 +40,179 @@ export class ContentCommunityComponent implements OnInit {
   showFunctionComment:boolean = false;
   content_edit_comment:string;
   showDeleteComment:boolean= false;
+  pageNumber=0;
+  postLoadMore:Post[];
+  isLoaded:boolean=true;
+  showTag:boolean = false;
+  tags:any[];
+  tagsSelected:any[]=[];
+  objectTag:any={};
+  listEmoji=["😀","😁","😂","😃","😄","😅","😆","😇","😈","😉","😊","😋","😌","😍","😎","😏","😐","😑","😒","😓","😔","😕","😖","😗","😘","😙","😚","😛","😜","😝","😞","😟","😠","😡","😢","😣","😤","😥","😦","😧","😨","😩","😪","😫","😬","😭","😮","😯","😰","😱","😲","😳","😴","😵","😶","😷","🙁","🙂","🙃","🙄","🤐","🤑","🤒","🤓","🤔","🤕","🤠","🤡","🤢","🤣","🤤","🤥","🤧","🤨","🤩","🤪","🤫","🤬","🤭","🤮","🤯","🧐"]
+  showEmoji:boolean=false;
+  tagGetPosts:string;
   constructor( 
     private postService:PostService,
     private profileService:ProfileService,
-    private spinner:NgxSpinnerService
+    private spinner:NgxSpinnerService,
+    private tagService:TagService,
+    private routerService: Router,
+    private activatedRouteService: ActivatedRoute
     ) { }
 
   ngOnInit() {
+    this.activatedRouteService.queryParams.subscribe(data=>{
+      // console.log(data);
+      // if(data["tag"]!=null){
+      this.tagGetPosts = data["tag"];
+      // this.posts=[];
+      this.posts=[];
+      this.load_data=true;
+      this.pageNumber=0;
+       this.isLoaded=true;
+      if(this.tagGetPosts==null){
+        
+        this.getAllPosts(0,null);
+        this.tagService.getAllTag().subscribe(data=>{
+        console.log(data);
+        if(data!=null){
+          this.tags = data.tags;
+          this.tags.forEach(tag=>{
+            this.objectTag[tag._id]=tag.name;
+          });
+          console.log(this.objectTag);
+        }
+      },error=>{
+        console.log(error);
+     });
+       
+        console.log("null");
+      }
+      else{
+        // this.pageNumber=0;
+        this.tagService.getAllTag().subscribe(data=>{
+        console.log(data);
+        if(data!=null){
+          this.tags = data.tags;
+          this.tags.forEach(tag=>{
+            this.objectTag[tag._id]=tag.name;
+          });
+           this.tags.forEach(tag=>{
+          if(tag.name==this.tagGetPosts){
+            this.getAllPosts(0,tag._id);
+          }
+        });
+          console.log(this.objectTag);
+        }
+      },error=>{
+        console.log(error);
+     });
+       
+      }
+      // }
+    });
+    
+    // this.getAllPosts(this.pageNumber);
+   
     this.getProfileCurrentUser();
-    this.getAllPosts();
-
+    
+    
   }
+  @HostListener('document:scroll', ['$event'])
+    onScroll(e) {
+      if(this.posts!=null&&this.posts.length>5){
+      let heightPostLast = document.getElementById(this.posts[this.posts.length-5]._id);
+      // console.log(window.pageYOffset+"/"+heightPostLast.offsetTop);
+      if(window.pageYOffset>heightPostLast.offsetTop && this.isLoaded==true){
+        // console.log(this.tagGetPosts);
+         // console.log("page number: " +this.pageNumber);
+        if(this.tagGetPosts!=null){
+           this.tags.forEach(tag=>{
+          if(tag.name==this.tagGetPosts){
+             this.loadMore(tag._id);
+          }
+        });
+        } 
+        else{
+         this.loadMore(null);
+         }
+         console.log("call");
+        }   
+        }  
+    // }
+    }
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
     this.showDetail = false;
+  }
+  postByTag(tag_name){
+    // console.log("navigate"+tag_name);
+    this.routerService.navigate(['/community'],{queryParams: {tag: this.objectTag[tag_name]}});
+  }
+  addIcon(icon){
+    this.content_post +=icon; 
+  }
+  toggle_emoji(){
+    this.showEmoji=!this.showEmoji;
+  }
+  add_remove_tag(tag){
+    if(this.tagsSelected.indexOf(tag)==-1){
+      this.tagsSelected.push(tag);
+    }else{
+      this.tagsSelected = this.tagsSelected.filter(function(value,index,arr){
+        return value!=tag;
+      });
+    }
+  }
+  toggle_tag(){
+    console.log("click tag");
+    this.showTag = !this.showTag;
+  }
+  like(post){
+    // console.log(post);
+    // this.posts[this.posts.indexOf[post]].isLike=!this.posts[this.posts.indexOf[post]].isLike;
+    if(post.isLiked==false){
+    this.postService.addLike(post._id).subscribe(data=>{
+      console.log(data);
+      // console.log(this.posts.indexOf(post));
+      this.posts[this.posts.indexOf(post)].likes =this.posts[this.posts.indexOf(post)].likes +1 ;
+      this.posts[this.posts.indexOf(post)].isLiked = true;
+    },error=>{
+      console.log(error);
+    })
+    }
+    else{
+      this.postService.unLike(post._id).subscribe(data=>{
+        console.log(data);
+        this.posts[this.posts.indexOf(post)].likes =this.posts[this.posts.indexOf(post)].likes -1 ;
+        this.posts[this.posts.indexOf(post)].isLiked = false;
+      },error=>{
+        console.log(error);
+      })
+    }
+  }
+  loadMore(tag_id){
+    this.isLoaded=false;
+    this.load_data=true;
+    this.pageNumber++;
+     this.postService.getAllPost(this.pageNumber,tag_id).subscribe(data=>{
+       if(data!=null){
+           
+           this.postLoadMore = data.posts;
+           if(this.postLoadMore.length==0){
+             this.isLoaded=false;
+             this.load_data=false;
+           }
+           else{
+           this.posts = this.posts.concat(data.posts);
+           console.log(this.posts);
+           console.log(data.posts);
+           
+           this.isLoaded=true;
+           this.load_data=false;
+         }
+       }
+     },error=>{
+       console.log(error);
+     }) 
   }
   toggleDeleteComment(){
     this.showDeleteComment = !this.showDeleteComment;
@@ -141,6 +305,8 @@ export class ContentCommunityComponent implements OnInit {
       if(data!=null){
       this.comments.unshift(new Comment(data.comment,this.profile,this.postDetail._id,this.input_comment,new Date()));
       // console.log(this.comments);
+      this.posts[this.posts.indexOf(this.postDetail)].comments = this.posts[this.posts.indexOf(this.postDetail)].comments +1;
+      // this.postDetail.comments= this.postDetail.comments+1;
       this.input_comment='';
       }
     },error=>{
@@ -234,14 +400,19 @@ export class ContentCommunityComponent implements OnInit {
     this.list_img.splice(this.list_img.indexOf(img),1);
   }
   addPost(){
+    let list_id_tag_selected:string[]=[];
+    for (var i = 0; i < this.tagsSelected.length; ++i) {
+        list_id_tag_selected[i] = this.tagsSelected[i]._id;
+      }
     if(this.content_post!=''||this.list_img.length>0)
-    this.postService.addPost(this.content_post,this.list_img).subscribe(data=>{
+    this.postService.addPost(this.content_post,this.list_img,this.tagsSelected).subscribe(data=>{
       // console.log(data.post);
       // console.log("value: "+this.content_post+"/"+this.list_img);
       if(data!=null){
         // console.log(data);
-        this.posts.unshift(new Post(data.post,[],this.profile,this.content_post,new Date(),this.list_img));
+        this.posts.unshift(new Post(data.post,list_id_tag_selected,this.profile,this.content_post,new Date(),this.list_img,0,0));
         this.content_post='';
+        this.tagsSelected=[];
         this.list_img =[];
       }
       // if(data!=null){
@@ -262,8 +433,8 @@ export class ContentCommunityComponent implements OnInit {
       }
     })
   }
-  getAllPosts(){
-    this.postService.getAllPost()
+  getAllPosts(pageNumber,tag_id){
+    this.postService.getAllPost(pageNumber,tag_id)
     .subscribe(data=>{
       this.posts = data.posts;
       // console.log(this.posts);
@@ -273,7 +444,8 @@ export class ContentCommunityComponent implements OnInit {
       }
     },error=>{
       console.log(error);
-    })
+    });
+    
   }
   // createRange(number){
   // var items: number[] = [];

@@ -2,9 +2,11 @@ import { Component, OnInit, Output,EventEmitter,HostListener } from '@angular/co
 import { LoginService } from'./../../services/login.service'
 import { ProfileService } from './../../services/profile.service'
 import { NgxSpinnerService } from 'ngx-spinner';
+import { CategoryService } from './../../services/category.service'
 
 import { LoginResponse } from'./../../models/loginResponse.class'
 import { Profile } from './../../models/profile.class'
+import { Category } from './../../models/category.class'
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
@@ -13,7 +15,7 @@ import { Profile } from './../../models/profile.class'
 export class NavigationComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    if(window.innerWidth>768){
+    if(window.innerWidth>=767.98){
       this.showMenu = true;
     }
     else{
@@ -26,7 +28,8 @@ export class NavigationComponent implements OnInit {
   constructor(
     public loginService : LoginService,
     private profileService: ProfileService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private categoryService: CategoryService
     ) {  }
 
   profile :Profile = new Profile();
@@ -50,7 +53,8 @@ export class NavigationComponent implements OnInit {
   fullName:string='';
   email:string='';
   showSubMenu:boolean=false;
-  showMenu:boolean = false;
+  showMenu:boolean =true;
+  categories:Category[];
   ngOnInit() {
     if (localStorage.getItem("token")!=null) {
       this.isLogin = true;
@@ -58,9 +62,23 @@ export class NavigationComponent implements OnInit {
     }
     else
       this.isLogin =false;
-     if(window.innerWidth>=768){
+     if(window.innerWidth>=767.98){
        this.showMenu=true;
      }
+     else{
+       this.showMenu=false;
+     }
+     this.getCategory();
+     console.log(this.showMenu);
+  }
+  getCategory(){
+    this.categoryService.getAllCategory().subscribe(data=>{
+        this.categories = data.categories;
+        console.log(this.categories);
+
+    },error=>{
+      console.log(error);
+    })
   }
   test(){
     this.showMenu=!this.showMenu;
@@ -98,7 +116,7 @@ export class NavigationComponent implements OnInit {
   	this.isShowDetailNotify = !this.isShowDetailNotify;
   }
   toggleMenu(){
-    if(window.innerWidth<=768){
+    if(window.innerWidth<=767){
       this.showMenu =!this.showMenu;
     }
     this.showSubMenu=false;
@@ -107,7 +125,7 @@ export class NavigationComponent implements OnInit {
     // this.value.emit("clicked");
     this.formLogin = !this.formLogin;
     this.message_error='';
-    if(window.innerWidth<=768){
+    if(window.innerWidth<=767){
       this.showMenu =!this.showMenu;
     }
   }
@@ -115,7 +133,7 @@ export class NavigationComponent implements OnInit {
     // this.value.emit("clicked");
     this.formRegister = !this.formRegister;
     this.message_error='';
-    if(window.innerWidth<=768){
+    if(window.innerWidth<=767){
       this.showMenu =!this.showMenu;
     }
   }
@@ -154,6 +172,9 @@ export class NavigationComponent implements OnInit {
     console.log(this.username_reg+"/"+this.password_reg+"/"+this.rePassword_red+"/"+this.fullName+"/"+this.email);
     if(this.username_reg!=''&&this.password_reg!=''&&this.rePassword_red!=''&&this.fullName!=''&&this.email!=''){
       if(this.password_reg==this.rePassword_red){
+
+        if(this.checkName(this.fullName)){
+          if(this.checkMail(this.email)){
         this.spinner.show();
         this.message_error='';
         this.loginService.register(this.username_reg,this.password_reg,this.fullName,this.email).subscribe(data=>{
@@ -173,13 +194,29 @@ export class NavigationComponent implements OnInit {
 
           this.spinner.hide();
         })
+      }else{
+        this.message_error = "Your email is invalid !"
+      }
+
+      }else{
+         this.message_error = "Your name is invalid !"
+      }
+
       }
       else{
-        this.message_error = "Re-password incorrect!"
+        this.message_error = "Re-password incorrect !"
       }
     }else
     {
-      this.message_error = "Please fill in all fields!"
+      this.message_error = "Please fill in all fields !"
     }
   }
+  checkName(name:string):boolean{
+   var re = /^[a-z\u00A1-\uFFFF\s]*$/m;
+   return re.test(name.toLowerCase());
+  }
+  checkMail(mail:String):boolean{
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(mail.toLowerCase());
+   }
 }

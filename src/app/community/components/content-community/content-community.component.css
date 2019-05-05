@@ -1,3 +1,74 @@
+.list_emoji span:hover{
+	cursor: pointer;
+}
+.list_emoji{
+	position: absolute;
+    right: 0px;
+    background: darkolivegreen;
+    width: 200%;
+    border-radius: 10px;
+    padding: 5px;
+    top: 35px;
+    z-index: 2;
+}
+.list_emoji:before{
+	content: "";
+    width: 10px;
+    height: 10px;
+    background: darkolivegreen;
+    top: -5px;
+    right: 35px;
+    position: absolute;
+    transform: rotate(45deg);
+
+}
+.div_question i{
+	color: #4f84c4;
+    padding: 0px 10px;
+}
+.box_tag{
+	position: relative;
+    background: #14bdee;
+    color: #ffffff;
+    padding: 1px 11px;
+    border-radius: 20px;
+    margin: 2px;
+    cursor: pointer;
+}
+.box_tag:hover{
+	transition: .5s;
+    background: #d0d0d08f;
+    color: #14bdee;
+}
+.box_tag i{
+	position: absolute;
+    top: -9px;
+}
+.label_tag{
+	position: relative;
+}
+.list_tag{
+	position: absolute;
+	width:  max-content;
+	right: 0;
+	padding: 14px;
+    background: #4F84C4;
+    border-radius: 10px;
+    color: white;
+    top: 35px;
+    text-align: left;
+    z-index: 2;
+}
+.list_tag:before{
+	content: "";
+    width: 10px;
+    height: 10px;
+    background: #4F84C4;
+    top: -5px;
+    right: 35px;
+    position: absolute;
+    transform: rotate(45deg);
+}
 .title_edit{
 	background: #414194;
     color: white;
@@ -123,6 +194,7 @@
 	padding:15px;
     box-sizing: border-box;
     z-index: 10;
+    height: inherit;
 }
 .infor, .text_content, .like_comment_save, .input_comment, .comments{
 	display: flex;
@@ -158,14 +230,15 @@
 }
 .img_current_user{
 	display: flex;
-	width: 10%
+	width: 15%;
+    justify-content: center;
 }
 .img_current_user >img{
 	border-radius: 50%;
 }
 .input{
 	display: flex;
-	width: 90%;
+	width: 85%;
 }
 .input > input:nth-child(1){
 	width: 100%;
@@ -331,7 +404,7 @@ img{
 }
 .preview_img_upload{
 	display: flex;
-	/*width: 100%;*/
+	width: 100%;
 	/*margin: 10px 0px;*/
 	margin-bottom: 10px;
 }
@@ -433,7 +506,7 @@ img{
 .name_datetime{
 	display: flex;
 	flex-wrap: wrap;
-	width: 85%;
+	width: 83%;
 	box-sizing: border-box;
 }
 .function{
@@ -487,7 +560,7 @@ img{
 	padding: 10px;
 }
 .like_comment{
-	padding: 10px 50px;
+	padding: 10px 40px;
 }
 .button_like_commnet{
 	margin: 5px;
@@ -503,7 +576,7 @@ img{
 	outline: none;
 }
 .box{
-	padding-right: 20px;
+	padding-right: 16px;
 }
 .title_setting{
 	display: flex;
@@ -592,20 +665,20 @@ img{
 	position: relative;
 	/*padding-top: 0px;*/
 }
-.attachment_post label{
-	padding: 5px 15px;
+.attachment_post .label{
+	padding: 5px 12px;
     background: #E9EBEE;
     border-radius: 20px;
     color: #000000cc;
-    margin: 0px 20px;
+    margin: 0px 5px;
 }
-.attachment_post label:hover{
+.attachment_post .label:hover{
 	background: #b3cbef;
 	transition: 0.2s;
 	cursor: pointer;
     /*transform: scale(1.05);*/
 }
-.attachment_post label i{
+.attachment_post i{
 	color: #4F84C4;
     padding: 0px 5px;
 }
@@ -703,4 +776,64 @@ img{
 .btn_cancel{
 	background: #4f84c4;
     color: white;
+}
+@media (max-width: 991.98px) { 
+	.questions{
+		width: 100%;
+	}
+	.content{
+		padding: 0 20px;
+	}
+	.detailPost{
+		padding: 20px 60px;
+	}
+	.black , .white{
+		width: 50%;
+	}
+	.setting{
+		width: 100%;
+		margin:10px;
+	}
+}
+@media (max-width: 767.98px) {
+	.white , .black{
+		width: 100%;
+	}
+	.black{
+		height: 30%;
+	}
+	.white{
+		height: 70%;
+	}
+	.detailPost{
+		width: 100%;
+		padding: 20px 60px;
+	}
+}
+@media (max-width: 575.98px) {
+	.content{
+		padding: 0px;
+	}
+	.attachment_post .label{
+		padding: 5px 6px;
+	}
+	.btn_post{
+		margin-top: 10px;
+	}
+	.name_datetime{
+		width: 75%;
+	}
+	.like_comment{
+		padding: 10px 5px;
+	}
+	.box{
+		padding-right: 2px;
+	}
+	.button_like_commnet{
+		margin: 4px;
+    	padding: 3px;
+	}
+	.nameAndDatetime{
+		width: 70%;
+	}
 }

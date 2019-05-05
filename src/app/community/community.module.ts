@@ -4,9 +4,13 @@ import { RouterModule,Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 //service
 import { PostService } from'./../services/post.service';
+import { TagService } from'./../services/tag.service';
 
 //components
 import { ContentCommunityComponent } from './components/content-community/content-community.component';
+
+//directive
+import { ClickOutside } from './../directive/clickOutSide.directive'
 const communityRoutes: Routes = [
   {
     path: 'community',
@@ -15,7 +19,8 @@ const communityRoutes: Routes = [
 ];
 @NgModule({
   declarations: [
-   ContentCommunityComponent
+   ContentCommunityComponent,
+   ClickOutside
    ],
   imports: [
     FormsModule,
@@ -23,7 +28,8 @@ const communityRoutes: Routes = [
     RouterModule.forChild(communityRoutes)
   ],
   providers: [
-    PostService
+    PostService,
+    TagService
   ]
 })
 export class CommunityModule { }

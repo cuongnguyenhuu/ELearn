@@ -6,7 +6,7 @@ export class Profile{
 	public password:any;
 	public name:any;
 	public gender:boolean;
-	public birthday:number;
+	public birthday:any;
 	public email:any;
 	public address:any;
 	public phone:any;

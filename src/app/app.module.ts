@@ -20,7 +20,8 @@ import { ContactComponent } from './components/contact/contact.component';
 import { VocabularyComponent } from './components/vocabulary/vocabulary.component';
 import { GrammarComponent } from './components/grammar/grammar.component';
 import { TestComponent } from './components/test/test.component';
-
+import { ResultSearchModule } from './result-search/result-search.module';
+import { BookmarkModule } from './bookmark/bookmark.module';
 import { NotfoundComponent } from './components/notfound/notfound.component';
  
  import { NgxSpinnerModule } from 'ngx-spinner';
@@ -59,6 +60,8 @@ const appRoutes: Routes = [
     TestModule,
     VocabularyModule,
     ProfileModule,
+    ResultSearchModule,
+    BookmarkModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [

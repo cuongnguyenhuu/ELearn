@@ -12,8 +12,8 @@
 			<a href="#"><span class="textLogo">ELearn!</span></a>
 		</div>
 		<div class="section search">
-			<input class="searchbox_custom" type="text" name="" placeholder="Search...">
-			<i class="icon_search fa fa-search" aria-hidden="true"></i>
+			<input class="searchbox_custom" type="text" name=""[(ngModel)]="text_search" placeholder="Search..." (keydown.enter)="navigateToSearch()">
+			<i class="icon_search fa fa-search" aria-hidden="true" (click)="navigateToSearch()"></i>
 		</div>
 		<div class="section social">
 			<div class="icon icon_facebook">

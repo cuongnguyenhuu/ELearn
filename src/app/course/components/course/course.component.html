@@ -1,6 +1,6 @@
 <div class="course">
 	<div class="title">
-		<span>B1</span>	
+		<span *ngIf="category!=null">{{category.name}}</span>	
 	</div>
 	<div class="content_course">
 		<div class="vocabulary">
@@ -9,12 +9,8 @@
 					<span>Vocabulary</span>
 				</div>
 				<div class="content_box">
-					<a href="/level/b1/vocabulary">Từ vựng thông dụng P1</a>
-					<a href="/level/b1/vocabulary">Từ vựng thông dụng P2</a>
-					<a href="/level/b1/vocabulary">Từ vựng thông dụng P3</a>
-					<a href="/level/b1/vocabulary">Chào hỏi</a>
-					<a href="/level/b1/vocabulary">Du lịch, phương hướng</a>
-					<a href="/level/b1/vocabulary">Con số và tiền bạc</a>
+					<a href="/level/b1/vocabulary" *ngFor="let item of listVocab">{{item.name}}</a>
+					
 				</div>
 			</div>
 		</div>
@@ -24,9 +20,7 @@
 					<span>Grammar</span>
 				</div>
 				<div class="content_box">
-					<a href="/level/b1/grammar">Simple present tense</a>
-					<a href="/level/b1/grammar">Simple past tense</a>
-					<a href="/level/b1/grammar">Past continuous tense</a>
+					<a href="/level/b1/grammar" *ngFor="let item of listGrammar">{{item.name}}</a>
 				</div>
 			</div>
 		</div>

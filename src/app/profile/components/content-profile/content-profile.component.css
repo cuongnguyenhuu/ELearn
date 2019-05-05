@@ -1,3 +1,13 @@
+.messageError{
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+.messageError span{
+    background: red;
+    padding: 2px 10px;
+    border-radius: 10px;
+}
 .section4 > i{
     cursor: pointer;
 }
@@ -180,4 +190,39 @@ label:hover{
 }
 .fa-camera{
     color: white;
+}
+@media (max-width: 991.98px) {
+    .content{
+        margin:0px;
+        width: 100%;
+    }
+    .topic{
+        width: 100%;
+        margin-top: 20px;
+    }
+    dialog{
+        width: 30%;
+    }
+}
+@media (max-width: 767.98px) {
+    dialog{
+        width: 45%;
+    }
+}
+@media (max-width: 575.98px) {
+    dialog{
+        width: 60%;
+    }
+    .content{
+        padding: 5px;
+    }
+    .section2{
+        width: 25%;
+    }
+    .section3{
+        width: 50%;
+    }
+    .section4{
+        width: 25%;
+    }
 }
