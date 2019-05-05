@@ -10,11 +10,11 @@ import { Category } from './../../../models/category.class'
 })
 export class CourseComponent implements OnInit {
 
-	private category:Category;
+	public category:Category;
   private categories:Category[];
   private type:any[];
-  private listVocab:any[];
-  private listGrammar:any[];
+  public listVocab:any[];
+  public listGrammar:any[];
   private listPrivate:any[];
   constructor(
   	public activeRouteService: ActivatedRoute,

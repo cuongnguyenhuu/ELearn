@@ -10,7 +10,7 @@ export class HeaderComponent implements OnInit {
   	private routerService:Router
   	) { }
 
-  private text_search:string;
+  public text_search:string;
   ngOnInit() {
   }
   navigateToSearch(){

@@ -10,7 +10,7 @@ export class ResultSearchComponent implements OnInit {
   constructor(
   	private activatedRouteService:ActivatedRoute
   	) { }
-  private text_search:string;
+  public text_search:string;
   ngOnInit() {
   	this.activatedRouteService.queryParams.subscribe(data=>{
   		// console.log(data);
