@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { PostService } from './../../../services/post.service'
 import { ProfileService } from './../../../services/profile.service'
 import { TagService } from './../../../services/tag.service'
+import { BookmarkService } from './../../../services/bookmark.service'
 //models
 import { Post } from './../../../models/post.class';
 import { Comment } from './../../../models/comment.class';
@@ -50,13 +51,16 @@ export class ContentCommunityComponent implements OnInit {
   listEmoji=["😀","😁","😂","😃","😄","😅","😆","😇","😈","😉","😊","😋","😌","😍","😎","😏","😐","😑","😒","😓","😔","😕","😖","😗","😘","😙","😚","😛","😜","😝","😞","😟","😠","😡","😢","😣","😤","😥","😦","😧","😨","😩","😪","😫","😬","😭","😮","😯","😰","😱","😲","😳","😴","😵","😶","😷","🙁","🙂","🙃","🙄","🤐","🤑","🤒","🤓","🤔","🤕","🤠","🤡","🤢","🤣","🤤","🤥","🤧","🤨","🤩","🤪","🤫","🤬","🤭","🤮","🤯","🧐"]
   showEmoji:boolean=false;
   tagGetPosts:string;
+  isLoadComments:boolean=true;
+  temp:any[];
   constructor( 
     private postService:PostService,
     private profileService:ProfileService,
     private spinner:NgxSpinnerService,
     private tagService:TagService,
     private routerService: Router,
-    private activatedRouteService: ActivatedRoute
+    private activatedRouteService: ActivatedRoute,
+    private bookmarkService:BookmarkService
     ) { }
 
   ngOnInit() {
@@ -143,6 +147,30 @@ export class ContentCommunityComponent implements OnInit {
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
     this.showDetail = false;
   }
+  createArray(number){
+    this.temp = [];
+    for (var i = 0; i < number; ++i) {
+      this.temp[i] = i;
+    }
+    return this.temp;
+  }
+  saveAndRemoveBookmark(post){
+    if(post.isBookmark==false){
+    this.bookmarkService.saveBookmark(post._id).subscribe(data=>{
+      console.log(data);
+      this.posts[this.posts.indexOf(post)].isBookmark=true;
+    },error=>{
+      console.log(error);
+    });
+    }else{
+      this.bookmarkService.removeBookmark(post._id).subscribe(data=>{
+        console.log(data);
+        this.posts[this.posts.indexOf(post)].isBookmark=false;
+      },error=>{
+        console.log(error);
+      })
+    }
+  }
   postByTag(tag_name){
     // console.log("navigate"+tag_name);
     this.routerService.navigate(['/community'],{queryParams: {tag: this.objectTag[tag_name]}});
@@ -169,12 +197,12 @@ export class ContentCommunityComponent implements OnInit {
   like(post){
     // console.log(post);
     // this.posts[this.posts.indexOf[post]].isLike=!this.posts[this.posts.indexOf[post]].isLike;
-    if(post.isLiked==false){
+    if(post.isLike==false){
     this.postService.addLike(post._id).subscribe(data=>{
       console.log(data);
       // console.log(this.posts.indexOf(post));
       this.posts[this.posts.indexOf(post)].likes =this.posts[this.posts.indexOf(post)].likes +1 ;
-      this.posts[this.posts.indexOf(post)].isLiked = true;
+      this.posts[this.posts.indexOf(post)].isLike = true;
     },error=>{
       console.log(error);
     })
@@ -183,7 +211,7 @@ export class ContentCommunityComponent implements OnInit {
       this.postService.unLike(post._id).subscribe(data=>{
         console.log(data);
         this.posts[this.posts.indexOf(post)].likes =this.posts[this.posts.indexOf(post)].likes -1 ;
-        this.posts[this.posts.indexOf(post)].isLiked = false;
+        this.posts[this.posts.indexOf(post)].isLike = false;
       },error=>{
         console.log(error);
       })
@@ -314,7 +342,7 @@ export class ContentCommunityComponent implements OnInit {
     });
   }
   toggleDetail(post,img){
-   
+     this.isLoadComments =true;
     this.showDetail=!this.showDetail;
     if(post!=null){
       this.postDetail = post;
@@ -327,9 +355,11 @@ export class ContentCommunityComponent implements OnInit {
     // console.log(this.postDetail);
     this.postService.getComments(this.postDetail._id).subscribe(data=>{
       // console.log(data);
+
       if(data!=null){
         this.comments = data.comments;
         // console.log(this.comments);
+        this.isLoadComments=false;
       }
 
     },error=>{

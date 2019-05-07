@@ -6,7 +6,7 @@ import { RouterModule,Routes } from '@angular/router';
 import { ContentGrammarComponent } from './components/content-grammar/content-grammar.component';
 const grammarRoutes: Routes = [
   {
-    path: 'level/b1/grammar',
+    path: 'level/:course/grammar/:id',
     component: ContentGrammarComponent
   }
 ];
@@ -21,3 +21,4 @@ const grammarRoutes: Routes = [
   ]
 })
 export class GrammarModule { }
+ 

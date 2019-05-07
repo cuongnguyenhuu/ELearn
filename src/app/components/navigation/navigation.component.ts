@@ -73,7 +73,7 @@ export class NavigationComponent implements OnInit {
   }
   getCategory(){
     this.categoryService.getAllCategory().subscribe(data=>{
-        this.categories = data.categories;
+        this.categories = data.categories.reverse();
         console.log(this.categories);
 
     },error=>{
@@ -152,6 +152,7 @@ export class NavigationComponent implements OnInit {
         this.getProfile();
         this.showFormLogin();
         this.isLogin = !this.isLogin;
+        window.location.reload();
       }
       else{
         this.message_error="Username or password incorrect! Please type again."
@@ -187,6 +188,7 @@ export class NavigationComponent implements OnInit {
             this.getProfile();
             this.showFormRegister();
             this.isLogin = !this.isLogin;
+            window.location.reload();
           }
           else{
             this.message_error="Username aready exist!."

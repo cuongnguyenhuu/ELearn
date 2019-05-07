@@ -1,13 +1,72 @@
 <div class="box_result_search">
 	<div class="title"><span>Result Search of "{{text_search}}"</span></div>
-	<div class="content">
-		<div class="box_vocabulary" >
+		<div class="content">
+		<div class="sub_title"><span>Vocabularies</span></div>
+		<div class="box_post" *ngFor="let word of listWord" >
 				<div class="section1 vocabulary">
-					CD, noun
+					{{word.name}} ( {{word.spell}} )
+					<i class="fa fa-volume-up" aria-hidden="true" (click)="read(word.name)"></i>
+					<i class="fa fa-star" aria-hidden="true" (click)="addAndRemoveBookmark(word)" [style.color]="word.isBookmark==true?'#efd300':null"></i>
 				</div>
 				<div class="section1 description">
-					a digitally encoded recording on an optical disk that is smaller than a phonograph record; played back by a laser
+					{{word.mean}}
 				</div>
+		</div>
+		<div class="box_post word_loader" *ngIf="listWord==null" >
+				<div class="section1 vocabulary">
+					<label></label>
+				</div>
+				<div class="section1 description">
+					<label></label>
+				</div>
+				<div class="icon_remove">
+				
+				</div>
+		</div>
+		<div class="sub_title"><span>Posts</span></div>
+		<a class="box_post" *ngFor="let post of listPost" [routerLink]="['/post/'+post._id]">
+			<div class="infor">
+				<img *ngIf="post.profile.img!=null" src="https://elearn-anhhong.c9users.io/images/{{post.profile.img}}" width="40px" height="40px">
+				<img *ngIf="post.profile.img==null" src="./../../../assets/images/user.png" width="40px" height="40px">
+				<span>{{post.profile.name}}</span>
+			</div>
+			<div class="img" *ngIf="post.imgs.length>0">
+				<img src="https://elearn-anhhong.c9users.io/images/{{post.imgs[0]}}" width="100%" height="auto">
+			</div>
+			<div class="content_post">
+				<div class="text">
+					{{post.content}}
+				</div>
+				<div class="tags">
+					<span *ngFor="let tag of post.tags">{{objectTag[tag]}}</span>
+				</div>
+				<div class="total_photos">
+					<span>Post: {{post.imgs.length}} {{post.imgs.length>1?'photos':'photo'}}</span>
+				</div>
+			</div>
+		</a>
+		<div class="box_post post_loader" *ngIf="listPost==null" >
+			<a class="infor" >
+				<label></label>
+				<span></span>
+			</a>
+			<a class="img" >
+				<label></label>
+			</a>
+			<a class="content_post">
+				<div class="text">
+					<label></label>
+				</div>
+				<div class="tags">
+					<label></label>
+				</div>
+				<div class="total_photos">
+					<label></label>
+				</div>
+			</a>
+			<div class="icon_remove" >
+				
+			</div>
 		</div>
 	</div>
 </div>

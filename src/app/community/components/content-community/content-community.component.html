@@ -10,8 +10,8 @@
 						<span>Create post</span>
 					</div>
 					<div class=" section1 main_post">
-						<img *ngIf="profile==null" class="img_user" src="./../../../assets/images/user.png" width="30px" height="30px">
-						<img *ngIf="profile!=null" class="img_user" src="https://elearn-anhhong.c9users.io/images/{{profile.img}}" width="30px" height="30px">
+						<img *ngIf="profile.img==null" class="img_user" src="./../../../assets/images/user.png" width="30px" height="30px">
+						<img *ngIf="profile.img!=null" class="img_user" src="https://elearn-anhhong.c9users.io/images/{{profile.img}}" width="30px" height="30px">
 						<textarea rows="2" placeholder="Type your question..." [(ngModel)]="content_post" #textbox (change)="content_post = textbox.value"></textarea>
 					</div>
 					<div class="section1 attachment_post">
@@ -103,15 +103,15 @@
 							<img *ngFor="let img of post.imgs" [style.width.%]="post.imgs.length>1?40:80" src="https://elearn-anhhong.c9users.io/images/{{img}}" (click)="toggleDetail(post,img)">
 						</div>
 					</div>
-					<div class="like_comment section1">
+					<div class="like_comment section1" *ngIf="profile!=null">
 						<div class="box" >
-							<i class="fa fa-heart" aria-hidden="true" [style.color]="post.isLiked?'red':'#00000061'"></i><input (click)="like(post)" class="button_like_commnet" type="button" name="" value="Like({{post.likes}})">
+							<i class="fa fa-heart" aria-hidden="true" [style.color]="post.isLike?'red':'#00000061'"></i><input (click)="like(post)" class="button_like_commnet" type="button" name="" value="Like({{post.likes}})">
 						</div>
 						<div class="box" (click)="toggleDetail(post)">
 							<i class="fa fa-commenting" aria-hidden="true"></i><input class="button_like_commnet" type="button" name="" value="Comment({{post.comments}})">
 						</div>
 						<div class="box">
-							<i class="fa fa-bookmark" aria-hidden="true"></i><input class="button_like_commnet" type="button" name="" value="Save bookmark">
+							<i class="fa fa-bookmark" aria-hidden="true" [style.color]="post.isBookmark ?'red':'#00000061'"></i><input class="button_like_commnet" type="button" name="" value="Save bookmark" (click)="saveAndRemoveBookmark(post)">
 						</div>
 						
 					</div>
@@ -169,20 +169,18 @@
 			</div>
 			<div class="setting">
 					<div class="section3 title">
-						<span class="title_setting">Setting</span>
+						<span class="title_setting">Shortcuts</span>
 					</div>
 					<div class="section3">
-						<select class="button_cancel_custom">
-							<option>Newest</option>
-							<option>Popular</option>
-						</select>
+						<input class="button_cancel_custom" [routerLink]="['/level/B1']" type="button" name="" value="B1">
 					</div>
 					<div class="section3">
-						<input class="button_cancel_custom" type="button" name="" value="Bookmark">
+						<input class="button_cancel_custom" [routerLink]="['/level/Toeic']" type="button" name="" value="Toeic">
 					</div>
-					<div class="section3">
-						<input class="button_cancel_custom" type="button" name="" value="My question">
+					<div class="section3" *ngIf="profile!=null">
+						<input class="button_cancel_custom" [routerLink]="['/bookmark']" type="button" name="" value="Bookmark">
 					</div>
+					
 			</div>
 		</div>
 	</div>
@@ -266,15 +264,15 @@
 					<div class="text_content">
 						<span>{{postDetail.content}}</span>
 					</div>
-					<div class="like_comment_save">
+					<div class="like_comment_save" *ngIf="profile!=null">
 						<div class="box" >
-							<i class="fa fa-heart" aria-hidden="true" [style.color]="postDetail.isLiked?'red':'#00000061'"></i><input (click)="like(postDetail)" class="button_like_commnet" type="button" name="" value="Like({{postDetail.likes}})">
+							<i class="fa fa-heart" aria-hidden="true" [style.color]="postDetail.isLike?'red':'#00000061'"></i><input (click)="like(postDetail)" class="button_like_commnet" type="button" name="" value="Like({{postDetail.likes}})">
 						</div>
 						<!-- <div class="box">
 							<i class="fa fa-commenting" aria-hidden="true"></i><input class="button_like_commnet" type="button" name="" value="Comment({{postDetail.comments}})">
 						</div> -->
 						<div class="box">
-							<i class="fa fa-bookmark" aria-hidden="true"></i><input class="button_like_commnet" type="button" name="" value="Save bookmark">
+							<i class="fa fa-bookmark" aria-hidden="true" [style.color]="postDetail.isBookmark ?'red':'#00000061'"></i><input class="button_like_commnet" type="button" name="" value="Save bookmark"  (click)="saveAndRemoveBookmark(postDetail)">
 						</div>
 					</div>
 					<div class="input_comment" *ngIf="profile!=null">
@@ -320,7 +318,22 @@
 								</div>
 							</div>
 						</div>
-						
+						<div class="comment comment_loader" *ngFor="let item of createArray(postDetail.comments)" [style.display]="isLoadComments==false?'none':null">
+							<div class="img_user_comment">
+								
+							</div>
+							<div class="content_comment">
+								<a class="name" href=""></a>
+								<span class="datetime"></span>
+								<p></p>
+								
+							</div>
+							<div class="function_comment">
+								<i></i>
+				
+							</div>
+						</div>
+
 					</div>
 				</div>
 			</div>

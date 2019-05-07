@@ -7,7 +7,8 @@ export class Post{
 	public imgs:any[];
 	public comments:any;
 	public likes:any;
-	public isLiked:boolean;
+	public isLike:boolean;
+	public isBookmark:boolean;
 
 	constructor(_id,tags,profile,content,created,imgs,comments,likes){
 		this._id = _id;
@@ -18,6 +19,7 @@ export class Post{
 		this.imgs = imgs;
 		this.comments = comments;
 		this.likes = likes;
-		this.isLiked=false;
+		this.isLike=false;
+		this.isBookmark=false;
 	}
 }

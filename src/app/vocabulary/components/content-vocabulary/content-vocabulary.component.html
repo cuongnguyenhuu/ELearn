@@ -6,18 +6,41 @@
 <body>
  	<div class="vocabulary_component">
  		<div class="title_intro">
-			<span>VOCABULARY - B1</span>
+			<span>VOCABULARY</span>
 		</div>
 		<div class="content">
 			<div class="title_content">
-				<label>Từ vựng thông dụng P1</label>
+				<label  *ngIf="name_category!=null" >{{name_category}}</label>
+				<label *ngIf="name_category==null" class="name_loader"></label>
 			</div>
-			<div class="title_content vocabularies" *ngFor="let i of createRang(5)">
+			<div class="title_content vocabularies" *ngFor="let word of listWord">
 				<div class="section1 vocabulary">
-					CD, noun
+
+						{{word.name}} ( {{word.spell}} )
+						<i class="fa fa-volume-up" aria-hidden="true" (click)="read(word.name)"></i>
+
+
+						<i class="fa fa-star" aria-hidden="true" *ngIf="isLogin!=null" (click)="addAndRemoveBookmark(word)" [style.color]="word.isBookmark==true?'#efd300':null"></i>
+
+					
 				</div>
 				<div class="section1 description">
-					a digitally encoded recording on an optical disk that is smaller than a phonograph record; played back by a laser
+					{{word.mean}}
+				</div>
+			</div>
+			<div class="title_content vocabularies vocab_loader" [style.display]="listWord!=null?'none':null" *ngFor="let item of tempArray(10)">
+				<div class="section1 vocabulary">
+						
+						<label></label>
+						<i></i>
+
+
+						<i *ngIf="isLogin!=null"></i>
+
+					
+				</div>
+				<div class="section1 description">
+					<label></label>
 				</div>
 			</div>
 		</div>
@@ -26,7 +49,8 @@
 				<span><i class="fa fa-bars" aria-hidden="true"></i>  Topic</span>
 			</div>
 			<div class="buttons">
-				<a class="button" href="#" *ngFor="let item of createRang(5)" >Từ vựng thông dụng P1</a>
+				<a class="button" href="#" *ngFor="let category of child_category" [routerLink]="[url+category._id]" >{{category.name}}</a>
+				<a class="button" href="{{urlTest}}" >TEST THIS PART</a>
 				<!-- <input class="button" type="button" name="" value="Appliances" *ngFor="let item of createRang(5)"> -->
 			</div>
 		</div>

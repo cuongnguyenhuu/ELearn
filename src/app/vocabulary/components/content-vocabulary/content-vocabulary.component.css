@@ -1,3 +1,34 @@
+.name_loader{
+    width: 85px;
+    height: 18px;
+    animation: load 2s infinite ease-in-out;
+}
+.vocab_loader label{
+    width: 125px;
+    height: 8px;
+    animation: load 2s infinite ease-in-out;
+}
+.vocab_loader i{
+    width: 15px;
+    height: 15px;
+    animation: load 2s infinite ease-in-out;
+}
+.vocab_loader .description label{
+    width: 125px;
+    height: 8px;
+    animation: load 2s infinite ease-in-out;
+}
+@keyframes load{
+    0%{
+        background: lightgray;
+    }
+    50%{
+        background: white;
+    }
+    100%{
+        background: lightgray;
+    }
+}
 .title_intro {
 	width: 100%;
   	font-family: roboto slab,serif;
@@ -50,14 +81,24 @@ label{
 	width: 100%;
 }
 .vocabulary{
+    padding: 10px 0px;
 	font-weight: bold;
 }
 .description{
 	padding: 0px 30px;
 }
 .vocabularies{
+    animation: question 1s;
 	padding: 15px 0px;
-	border-bottom: 1px solid;
+	border-bottom: 1px solid lightgray;
+}
+@keyframes question{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
 }
 .title_topic{
 	font-weight: bold;
@@ -81,4 +122,20 @@ label{
 }
 .buttons{
 	padding: 0px 10px;
+}
+.vocabulary i:nth-child(1){
+    margin: 0px 10px;
+    color: #4f84c4;
+}
+.vocabulary i:nth-child(1):hover{
+    cursor: pointer;
+    color: #003d86;
+}
+.vocabulary i:nth-child(2){
+    margin: 0px 10px;
+    color: #b1b1b1;
+}
+.vocabulary i:nth-child(2):hover{
+    cursor: pointer;
+    color: #efd300;
 }

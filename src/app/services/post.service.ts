@@ -84,4 +84,10 @@ export class PostService {
    }
      return this.http.request('delete',this.API+"like",{body:{post},headers:httpOptions.headers});
   }
+  getPostById(id){
+     if(httpOptions.headers.has('token')==false&&localStorage.getItem("token")!=null){
+     httpOptions.headers =  httpOptions.headers.append("token",localStorage.getItem('token'));
+   }
+    return this.http.get<any>(this.API+"post?id="+id,httpOptions);
+  }
 }

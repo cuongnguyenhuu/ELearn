@@ -1,6 +1,7 @@
 <div class="course">
 	<div class="title">
-		<span *ngIf="category!=null">{{category.name}}</span>	
+		<span *ngIf="category!=null">{{category_name}}</span>	
+		<span *ngIf="category==null" class="title_loader"></span>
 	</div>
 	<div class="content_course">
 		<div class="vocabulary">
@@ -9,8 +10,10 @@
 					<span>Vocabulary</span>
 				</div>
 				<div class="content_box">
-					<a href="/level/b1/vocabulary" *ngFor="let item of listVocab">{{item.name}}</a>
-					
+					<a *ngFor="let item of listVocab" [routerLink]="[url+'/vocabulary/'+item._id]">{{item.name}}</a>
+					<a *ngIf="listVocab==null" class="loader"></a>
+					<a *ngIf="listVocab==null" class="loader"></a>
+					<a *ngIf="listVocab==null" class="loader"></a>
 				</div>
 			</div>
 		</div>
@@ -20,7 +23,10 @@
 					<span>Grammar</span>
 				</div>
 				<div class="content_box">
-					<a href="/level/b1/grammar" *ngFor="let item of listGrammar">{{item.name}}</a>
+					<a [routerLink]="[url+'/grammar/'+item._id]" *ngFor="let item of listGrammar">{{item.name}}</a>
+					<a *ngIf="listGrammar==null" class="loader"></a>
+					<a *ngIf="listGrammar==null" class="loader"></a>
+					<a *ngIf="listGrammar==null" class="loader"></a>
 				</div>
 			</div>
 		</div>
@@ -30,8 +36,7 @@
 					<span>Practive</span>
 				</div>
 				<div class="content_box">
-					<a href="/level/b1/test">Từ vựng: check-box</a>
-					<a href="/level/b1/test">Grammar: check-box</a>
+					<a [routerLink]="[url+'/test']" [queryParams]="{type: 'choose'}">Select quizz</a>
 				</div>
 			</div>
 		</div>

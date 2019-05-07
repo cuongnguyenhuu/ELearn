@@ -50,4 +50,5 @@ export class ProfileService {
   changePassword(oldPass,newPass,confirmPass){
     return this.http.post(this.API+"reset",{oldPass,newPass,confirmPass},httpOptions);
   }
+  
 }

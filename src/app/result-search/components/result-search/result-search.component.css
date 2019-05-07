@@ -1,3 +1,108 @@
+.post_loader .infor label {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    animation: load 2s infinite ease-in-out;
+}
+.post_loader .infor span{
+    width: 80px;
+    height: 18px;
+    display: block;
+    margin-left: 10px;
+    animation: load 2s infinite ease-in-out;
+}
+.post_loader .img label{
+    width: 200px;
+    height: 200px;
+    animation: load 2s infinite ease-in-out;
+    display: block;
+}
+.post_loader .content_post .text label{
+    width: 80px;
+    height: 18px;
+    display: block;
+    margin-left: 10px;
+    animation: load 2s infinite ease-in-out;
+}
+.post_loader .content_post .tags label{
+    width: 80px;
+    height: 18px;
+    display: block;
+    margin-left: 10px;
+    animation: load 2s infinite ease-in-out;
+}
+.post_loader .content_post .total_photos label{
+    width: 80px;
+    height: 18px;
+    display: block;
+    margin-left: 10px;
+    animation: load 2s infinite ease-in-out;
+}
+.post_loader .icon_remove i{
+    width: 15px;
+    height: 15px;
+    display: block;
+    margin-left: 10px;
+    animation: load 2s infinite ease-in-out;
+}
+.word_loader .vocabulary label{
+     width: 80px;
+    height: 18px;
+    display: block;
+    /*margin-left: 10px;*/
+    animation: load 2s infinite ease-in-out;
+}
+.word_loader .vocabulary i{
+     width: 15px;
+    height: 15px;
+    /*display: block;*/
+    margin-left: 10px;
+    animation: load 2s infinite ease-in-out;
+}
+.word_loader .description label{
+     width: 80px;
+    height: 15px;
+    display: block;
+    margin:10px;
+    /*margin-left: 10px;*/
+    animation: load 2s infinite ease-in-out;
+}
+.word_loader .icon_remove i{
+     width: 15px;
+    height: 15px;
+    display: block;
+
+    /*margin-left: 10px;*/
+    animation: load 2s infinite ease-in-out;
+}
+@keyframes load{
+    0%{
+        background: lightgray;
+    }
+    50%{
+        background: white;
+    }
+    100%{
+        background: lightgray;
+    }
+}
+
+.infor{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 10px
+}
+.infor img{
+    border-radius: 50%;
+}
+.infor span{
+    font-weight: bold;
+    padding: 0px 15px;
+}
+a{
+    text-decoration: none;
+}
 .title{
 	width: 100%;
     font-family: roboto slab,serif;
@@ -14,4 +119,108 @@
     align-items: center;
     justify-content: center;
     padding-bottom: 30px;
+}
+.content{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 30px;
+    flex-wrap: wrap;
+}
+.sub_title{
+    width: 100%;
+    display: flex;
+    border-bottom: 2px solid #4267b2;
+}
+.sub_title span{
+    background: #14bdee;
+    color: white;
+    font-weight: bold;
+    padding: 5px 20px;
+    border-radius: 12px;
+    margin: 10px;
+}
+.box_post{
+    animation: question 1s;
+    position: relative;
+    display: flex;
+    width: 80%;
+    margin: 0 20%;
+    padding: 20px;
+    border-bottom: 1px solid #ccc7c7;
+    flex-wrap: wrap;
+}
+@keyframes question{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+.img{
+    width: 30%;
+}
+.content_post{
+    box-sizing: border-box;
+    width: 70%;
+    padding: 0px 10px;
+}
+.text{
+    font-size: 20px;
+    color: #005ccc;
+    font-weight: bold;
+}
+.tags{
+    margin: 5px 0px;
+}
+.tags span{
+    background: #14bdee;
+    color: white;
+    padding: 0px 5px;
+    border-radius: 10px;
+    margin: 5px;
+}
+.total_photos{
+    color: #8c8c8c;
+    font-size: 13px;
+}
+.icon_remove{
+    position: absolute;
+    right: 0px;
+    color: #a5a5a5;
+}
+.icon_remove:hover{
+    cursor: pointer;
+    color: black;
+}
+.vocabulary{
+    font-weight: bold;
+    font-size: 20px;
+    width: 100%;
+}
+.vocabulary i{
+    margin: 0px 10px;
+    color: #4f84c4;
+    margin: 10px 0px;
+}
+.description{
+    padding: 0px 20px;
+}
+.vocabulary i:nth-child(1){
+    margin: 0px 10px;
+    color: #4f84c4;
+}
+.vocabulary i:nth-child(1):hover{
+    cursor: pointer;
+    color: #003d86;
+}
+.vocabulary i:nth-child(2){
+    margin: 0px 10px;
+    color: #b1b1b1;
+}
+.vocabulary i:nth-child(2):hover{
+    cursor: pointer;
+    color: #efd300;
 }

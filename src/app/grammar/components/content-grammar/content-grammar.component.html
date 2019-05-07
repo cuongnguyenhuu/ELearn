@@ -10,18 +10,19 @@
 		</div>
 		<div class="content">
 			<div class="title_content">
-				<label>Grammar - A1</label>
+				<label *ngIf="name_category!=null">{{name_category}}</label>
+				<label *ngIf="name_category==null" class="name_loader"></label>
 			</div>
-			<div class="title_content vocabularies" *ngFor="let i of createRang(5)">
+			<div class="title_content vocabularies" *ngFor="let grammar of listGrammar" >
 				<div class="section1 vocabulary">
-					To be
+					{{grammar.name}}
 				</div>
 				<div class="section1 description">
 					<div class="section1 section3">
 						Use:
 					</div>
 					<div class="section2">
-						Use a before a singular noun.
+						{{grammar.usage}}
 					</div>
 				</div>
 				<div class="section1 description">
@@ -29,7 +30,7 @@
 						Form:
 					</div>
 					<div class="section2">
-						Use a before a singular noun.
+						{{grammar.form}}
 					</div>
 				</div>
 				<div class="section1 description">
@@ -37,7 +38,35 @@
 						Example:
 					</div>
 					<div class="section2">
-						Use a before a singular noun.
+						{{grammar.example}}
+					</div>
+				</div>
+			</div>
+			<div class="title_content vocabularies vocab_loader" [style.display]="listGrammar!=null?'none':null" *ngFor="let item of tempArray(10)" >
+				<div class="section1 vocabulary">
+					<label></label>
+				</div>
+				<div class="section1 description">
+					<div class="section1 section3">
+						<label></label>
+					</div>
+					<div class="section2">
+					</div>
+				</div>
+				<div class="section1 description">
+					<div class="section1 section3">
+						<label></label>
+					</div>
+					<div class="section2">
+						
+					</div>
+				</div>
+				<div class="section1 description">
+					<div class="section1 section3">
+						<label></label>
+					</div>
+					<div class="section2">
+						
 					</div>
 				</div>
 			</div>
@@ -47,7 +76,8 @@
 				<span><i class="fa fa-bars" aria-hidden="true"></i>  Topic</span>
 			</div>
 			<div class="buttons">
-				<a class="button" href="#" *ngFor="let item of createRang(5)" >Simple present tense</a>
+				<a class="button"  *ngFor="let category of child_category" [routerLink]="[url+category._id]" >{{category.name}}</a>
+				<a class="button" href="{{urlTest}}" >TEST THIS PART</a>
 				<!-- <input class="button" type="button" name="" value="A1" *ngFor="let item of createRang(5)"> -->
 			</div>
 		</div>

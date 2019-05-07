@@ -56,6 +56,7 @@ justify-content: center;
   box-shadow: 0px 0px 24px 0px rgba(79,132,196,1);
   border-radius: 50%;
   margin-bottom: 30px;
+  font-style: italic;
 }
 
 .massage:after{
@@ -86,9 +87,10 @@ justify-content: center;
   align-items: center;
 }
 .img_founder{
-	border-radius: 50%;
-	border: 1px solid black;
-	margin-bottom: 20px;
+	 border-radius: 50%;
+    margin-bottom: 20px;
+    padding: 3px;
+    object-fit: cover;
 }
 @media (max-width: 991.98px) { 
   .text_title{

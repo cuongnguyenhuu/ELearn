@@ -16,6 +16,10 @@ export class CourseComponent implements OnInit {
   public listVocab:any[];
   public listGrammar:any[];
   private listPrivate:any[];
+  url:string;
+  category_name:string;
+  categories_selected:string[] = [];
+  showDialog=false;
   constructor(
   	public activeRouteService: ActivatedRoute,
   	public categoryService: CategoryService
@@ -25,20 +29,34 @@ export class CourseComponent implements OnInit {
 
   
   ngOnInit() {
+    this.url = window.location.pathname;
   	this.getAllCategories();
   	// console.log(this.category);  	
   }
-
+  toggleDialogTest(){
+    if(this.showDialog==false){
+      this.categories_selected=[];
+    }
+    this.showDialog=!this.showDialog;
+  }
+  option(id){
+    if(this.categories_selected.indexOf(id)==-1){
+      this.categories_selected.push(id);
+    }
+    else{
+      this.categories_selected.splice(this.categories_selected.indexOf(id),1);
+    }
+  }
   getAllCategories(){
-  	let category_name;
+  	
     this.activeRouteService.paramMap.subscribe(data=>{
       if(data!=null){
-        category_name = data.get('course');
+        this.category_name = data.get('course');
         this.categoryService.getAllCategory().subscribe(data=>{
           if(data!=null){
             this.categories = data.categories;
             for (var i = 0; i < this.categories.length; ++i) {
-              if(this.categories[i].name==category_name){
+              if(this.categories[i].name==this.category_name){
                 this.category = this.categories[i];
               }
             }
@@ -58,14 +76,14 @@ export class CourseComponent implements OnInit {
 	  		console.log(data);
 	  		if(data!=null){
 	  			this.type = data.children;
-	  			this.categoryService.getType(this.type[0]._id).subscribe(data=>{
+	  			this.categoryService.getType(this.type[1]._id).subscribe(data=>{
 	  				console.log(data);
-	  				this.listVocab = data.children;
+	  				this.listVocab = data.children.reverse();
 	  			},error=>{
 	  				console.log(error);
 	  			});
-	  			this.categoryService.getType(this.type[1]._id).subscribe(data=>{
-	  				this.listGrammar = data.children;
+	  			this.categoryService.getType(this.type[0]._id).subscribe(data=>{
+	  				this.listGrammar = data.children.reverse();
 	  			},error=>{
 	  				console.log(error);
 	  			});

@@ -6,7 +6,7 @@ import { RouterModule,Routes } from '@angular/router';
 import { ContentVocabularyComponent } from './components/content-vocabulary/content-vocabulary.component';
 const vocabularyRoutes: Routes = [
   {
-    path: 'level/b1/vocabulary',
+    path: 'level/:course/vocabulary/:id',
     component: ContentVocabularyComponent
   }
 ];

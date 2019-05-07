@@ -75,6 +75,9 @@
   text-align: center;
   padding: 10px 16px;
 }
+.nav-bar ul li a:hover{
+  cursor: pointer;
+}
 .line_vertical::after {
 	content: "";
 	border-left: 1px solid blue;
@@ -344,7 +347,7 @@ li a:hover{
 .div_password >input,
 .div_username > input{
   padding: 15px 30px;
-    width: 80%;
+       width: 100%;
     font-size: 13px;
     border-radius: 10px;
     border: 1px solid #00000033;
@@ -359,7 +362,7 @@ li a:hover{
 
 .div_password >i,
 .div_username >  i{
-  left: 20px;
+  left: 10px;
   color: #00000057;
 }
 .div_password >span,

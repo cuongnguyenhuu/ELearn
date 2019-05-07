@@ -1,3 +1,25 @@
+.title_loader{
+	width: 80px;
+	height: 47px;
+	animation: load 2s infinite ease-in-out;
+	display: block;
+}
+.loader{
+	height: 18px;
+	animation: load 2s infinite ease-in-out;
+}
+@keyframes load{
+	0%{
+		background: lightgray;
+	}
+	50%{
+		background: white;
+	}
+	100%{
+		background: lightgray;
+	}
+}
+
 .course{
 	display: flex;
 	flex-wrap: wrap;
@@ -53,6 +75,7 @@
 	padding: 10px;
 }
 .content_box > a{
+	animation: question 1s;
 	display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -63,4 +86,12 @@
     background: white;
     color: black;
     text-decoration: none;
+}
+@keyframes question{
+	from{
+		opacity: 0;
+	}
+	to{
+		opacity: 1;
+	}
 }

@@ -79,9 +79,18 @@
   text-align: center;
 }
 .slider > figure > .img_slider{
+  animation: question 1s;
   position: relative;
   float: left;
   width: 20%;
+}
+@keyframes question{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
 }
 .img_slider >img{
   width: 100%;

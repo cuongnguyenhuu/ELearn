@@ -1,0 +1,125 @@
+		<div class="detailPost" *ngIf="postDetail!=null">
+			<div>
+				<div id="black" class="black" *ngIf="postDetail.imgs.length>0">
+					<div class="previous" (click)="previousImg()" *ngIf="postDetail.imgs.length>1">
+						<i class="fa fa-caret-left fa-3x" aria-hidden="true"></i>
+					</div>
+					<img (load)="checkSizeImg()" id="img_detail" [className]="isWidthAuto==false?'heightAuto':'widthAuto'"
+					 src="https://elearn-anhhong.c9users.io/images/{{imgCurrent}}">
+					<div class="next" (click)="nextImg()" *ngIf="postDetail.imgs.length>1">
+						<i class="fa fa-caret-right fa-3x" aria-hidden="true"></i>
+					</div>
+				</div>
+				<div class="white">
+					<div class="infor">
+						<div class="imgUserPost">
+							<img *ngIf="postDetail.profile.img==null"  src="./../../../assets/images/user.png" width="50px" height="50px">
+							<img *ngIf="postDetail.profile.img!=null"  src="https://elearn-anhhong.c9users.io/images/{{postDetail.profile.img}}" width="50px" height="50px" >
+						</div>
+						<div class="nameAndDatetime">
+							<div class="name">
+								<span>{{postDetail.profile.name}}</span>
+							</div>
+							<div class="datetime">
+								<span>{{postDetail.created | date:'dd-MM-yyyy'}} at {{postDetail.created | date:'HH:mm'}}</span>
+							</div>
+						</div>
+					</div>
+					<div class="text_content">
+						<span>{{postDetail.content}}</span>
+					</div>
+					<div class="like_comment_save">
+						<div class="box" >
+							<i class="fa fa-heart" aria-hidden="true" [style.color]="postDetail.isLike?'red':'#00000061'"></i><input (click)="like(postDetail)" class="button_like_commnet" type="button" name="" value="Like({{postDetail.likes}})">
+						</div>
+						<!-- <div class="box">
+							<i class="fa fa-commenting" aria-hidden="true"></i><input class="button_like_commnet" type="button" name="" value="Comment({{postDetail.comments}})">
+						</div> -->
+						<div class="box">
+							<i class="fa fa-bookmark" aria-hidden="true" [style.color]="postDetail.isBookmark ?'red':'#00000061'"></i><input class="button_like_commnet" type="button" name="" value="Save bookmark"  (click)="saveAndRemoveBookmark(postDetail)">
+						</div>
+					</div>
+					<div class="input_comment" *ngIf="profile!=null">
+						<div class="img_current_user">
+							<img *ngIf="profile==null" class="img_user" src="./../../../assets/images/user.png" width="40px" height="40px">
+							<img *ngIf="profile!=null" class="img_user" src="https://elearn-anhhong.c9users.io/images/{{profile.img}}" width="40px" height="40px">
+						</div>
+						<div class="input">
+							<input type="text" name="" placeholder="Write a comment" [(ngModel)]="input_comment" (keydown.enter)="addComment()">
+						</div>
+					</div>
+					<div class="comments" >
+						<div class="comment" *ngFor="let comment of comments">
+							<div class="img_user_comment">
+								<img *ngIf="comment.profile.img==null"  src="./../../../assets/images/user.png" width="40px" height="40px">
+							<img *ngIf="comment.profile.img!=null"  src="https://elearn-anhhong.c9users.io/images/{{comment.profile.img}}" width="40px" height="40px" >
+							</div>
+							<div class="content_comment">
+								<a class="name" href="">{{comment.profile.name}}</a>
+								<span class="datetime">{{comment.created | date:'dd-MM-yyyy'}} at {{comment.created | date:'HH:mm'}}</span>
+								<p>{{comment.content}}</p>
+								
+							</div>
+							<div class="function_comment">
+								<i class="fa fa-ellipsis-h" aria-hidden="true" (click)="toggleFunctionComment(comment)" 
+								(clickOutside)="_comment==comment?_comment='':null"></i>
+								<div class="list_function" *ngIf="_comment == comment" >
+									<div *ngIf="comment.profile._id==profile.id||comment.profile.id==profile.id" (click)="toggleEditComment()">
+										<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+										<span>Edit comment</span>
+										
+									</div>
+									<div *ngIf="comment.profile._id==profile.id||comment.profile.id==profile.id" (click)="toggleDeleteComment()">
+										<i class="fa fa-trash-o" aria-hidden="true"></i>
+										<span>Delete comment</span>
+										
+									</div>
+									<div>
+										<i class="fa fa-bug" aria-hidden="true"></i>
+										<span>Report comment</span>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<div class="dialog" *ngIf="showEditComment">
+				<div class="background_gray" (click)="toggleEditComment()">
+				
+				</div>
+				<div class="edit">
+					<div>
+						<div class="title_edit">
+							<span>Edit comment</span>
+						</div>
+						<div class="main_edit">
+							<textarea rows="2" [(ngModel)]="content_edit_comment" #textboxComment (change)="content_edit_comment = textboxComment.value"></textarea>
+						</div>
+						<div class="buttons_edit">
+							<input type="button" name="" value="Cancel" (click)="toggleEditComment()">
+							<input type="button" name="" value="Edit" (click)="editComment()">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="dialog" *ngIf="showDeleteComment">
+				<div class="background_gray" (click)="toggleDeleteComment()">
+				
+				</div>
+				<div class="edit">
+					<div>
+						<div class="title_edit">
+							<span>Delete comment</span>
+						</div>
+						<div class="buttons_edit">
+							<input type="button" name="" value="Cancel" (click)="toggleDeleteComment()">
+							<input type="button" name="" value="Delete" (click)="deleteComment()">
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>

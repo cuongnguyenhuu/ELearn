@@ -18,4 +18,7 @@ export class CategoryService {
   	getType(id_category){
   		return this.http.get<any>(this.API+"category/"+id_category+"/children",httpOptions);
   	}
+    getCategoryById(id){
+      return this.http.get<any>(this.API+"category?id="+id,httpOptions);
+    }
 }

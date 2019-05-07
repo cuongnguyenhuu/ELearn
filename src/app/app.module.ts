@@ -8,6 +8,7 @@ import { GrammarModule } from './grammar/grammar.module';
 import { TestModule } from './test/test.module';
 import { VocabularyModule } from './vocabulary/vocabulary.module';
 import { ProfileModule } from './profile/profile.module';
+import { PostModule } from './post/post.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -62,6 +63,7 @@ const appRoutes: Routes = [
     ProfileModule,
     ResultSearchModule,
     BookmarkModule,
+    PostModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
