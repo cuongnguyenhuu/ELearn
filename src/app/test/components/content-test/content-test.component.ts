@@ -54,6 +54,7 @@ export class ContentTestComponent implements OnInit {
       this.activeRouteService.queryParamMap.subscribe(data=>{
               this.query = data.get('type');
                clearInterval(count);
+               this.list_selected=[];
             this.timeleft='';
             this.total_question_correct=null;
             this.list_question=null;
@@ -74,7 +75,8 @@ export class ContentTestComponent implements OnInit {
       let i=0;
       this.list_answers[j]='';
       question.answers.forEach(answer=>{
-        if(document.getElementById(question._id+i).checked){
+          var input = document.getElementById(question._id+i) as HTMLInputElement
+        if(input.checked){
           this.list_answers[j]=answer;
         }
         i++;
