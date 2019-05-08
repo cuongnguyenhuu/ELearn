@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule,Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+
 //components
 import { ContentHomeComponent } from './components/content-home/content-home.component';
 import { FounderComponent } from './components/founder/founder.component';

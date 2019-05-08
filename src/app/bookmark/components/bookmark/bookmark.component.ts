@@ -17,6 +17,7 @@ export class BookmarkComponent implements OnInit {
   public listPost:any[];
   public listWord:any[];
   public objectTag={};
+  isReading:boolean = false;
   ngOnInit() {
   	this.getBookmark();
   }
@@ -46,7 +47,14 @@ export class BookmarkComponent implements OnInit {
     })
   }
   read(word){
-     window.speechSynthesis.speak(new SpeechSynthesisUtterance(word));
+        if(this.isReading==false){
+    // window.speechSynthesis.cancel();
+    this.isReading=true;
+    window.speechSynthesis.speak(new SpeechSynthesisUtterance(word));
+    setTimeout(()=>{
+      this.isReading=false;
+    },1000)
+    }
   }
   removeWord(word){
     this.bookmarkService.removeWord(word._id).subscribe(data=>{

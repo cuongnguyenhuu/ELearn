@@ -128,3 +128,11 @@ label{
 .section3{
 	font-weight: bold;
 }
+@media (max-width: 991.98px) {  
+    .content{
+        width: 100%;
+    }
+    .topic{
+        width: 100%;
+    }
+}

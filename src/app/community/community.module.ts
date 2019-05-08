@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 //service
 import { PostService } from'./../services/post.service';
 import { TagService } from'./../services/tag.service';
-
+import { NotificationModule} from './../notification/notification.module'
 //components
 import { ContentCommunityComponent } from './components/content-community/content-community.component';
 
@@ -25,6 +25,7 @@ const communityRoutes: Routes = [
   imports: [
     FormsModule,
     CommonModule,
+    NotificationModule,
     RouterModule.forChild(communityRoutes)
   ],
   providers: [

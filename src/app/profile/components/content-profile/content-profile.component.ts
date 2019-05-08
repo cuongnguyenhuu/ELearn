@@ -27,6 +27,7 @@ export class ContentProfileComponent implements OnInit {
   filetoUpload: File = null;
   imgId:string;
   messageError:string='';
+  message:string;
   ngOnInit() {
   	this.getProfile();
   }
@@ -68,7 +69,13 @@ export class ContentProfileComponent implements OnInit {
     })
   }
   logout(){
-  	this.loginService.logout();
+  	
+    this.message="You have logged out!";
+    setTimeout(()=>{
+              this.message = null;
+              this.loginService.logout();
+    },1000);
+
   }
   toggle_dialog(name:string){
     this.messageError='';
@@ -166,6 +173,10 @@ export class ContentProfileComponent implements OnInit {
       this.profileService.getProfile();
       console.log("////"+this.profile);
       this.spinner.hide();
+      this.message="Update success!";
+            setTimeout(()=>{
+              this.message = null;
+            },2000);
       // window.location.href="/profile";
     },error=>{
       console.log(error);

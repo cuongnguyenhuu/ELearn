@@ -11,6 +11,7 @@ import { ProfileModule } from './profile/profile.module';
 import { PostModule } from './post/post.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NotificationModule } from './notification/notification.module'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -64,6 +65,7 @@ const appRoutes: Routes = [
     ResultSearchModule,
     BookmarkModule,
     PostModule,
+    NotificationModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [

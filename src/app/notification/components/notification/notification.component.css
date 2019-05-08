@@ -1,0 +1,31 @@
+.notifycation{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    animation: close 2s;
+}
+@keyframes close{
+    0%{
+        /*display: block;*/
+        opacity: 1;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        /*display: none;*/
+    }
+}
+.notifycation span{
+	background: red;
+    color: white;
+    padding: 5px 50px;
+    border-radius: 40px;
+    margin: 50px;
+}

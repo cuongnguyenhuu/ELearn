@@ -139,3 +139,11 @@ label{
     cursor: pointer;
     color: #efd300;
 }
+@media (max-width: 991.98px) {  
+    .content{
+        width: 100%;
+    }
+    .topic{
+        width: 100%;
+    }
+}

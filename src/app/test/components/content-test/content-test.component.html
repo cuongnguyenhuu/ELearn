@@ -126,6 +126,7 @@
 				<a class="button" [routerLink]="[url]" [queryParams]="{type: vocab._id}" *ngFor="let vocab of listVocab" >{{vocab.name}}</a>
 				<!-- <input class="button" type="button" name="" value="A1" *ngFor="let item of createRang(5)"> -->
 				<a class="button" [routerLink]="[url]" [queryParams]="{type: grammar._id}"  *ngFor="let grammar of listGrammar" >{{grammar.name}}</a>
+				<a class="button" (click)="toggleDialogTest()"  >Set test</a>
 			</div>
 		</div>
 		<div class="section2 button_submit" *ngIf="list_question!=null&&list_question.length>0">
@@ -142,12 +143,12 @@
 			<span>Choose categories</span>
 		</div>
 		<div class="box_option" *ngFor="let vocab of listVocab">
-			<input type="checkbox" name="" (change)="option(vocab._id)">
-			<label>{{vocab.name}}</label>
+			<input type="checkbox" id="{{vocab._id}}" name="" (change)="option(vocab._id)">
+			<label for="{{vocab._id}}">{{vocab.name}}</label>
 		</div>
 		<div class="box_option" *ngFor="let grammar of listGrammar">
-			<input type="checkbox" name="" (change)="option(grammar._id)">
-			<label>{{grammar.name}}</label>
+			<input type="checkbox" id="{{grammar._id}}" name="" (change)="option(grammar._id)">
+			<label for="{{grammar._id}}">{{grammar.name}}</label>
 		</div>
 		<div class="boxButton">
 			<input type="button" name="" value="Create" (click)="createTest()">

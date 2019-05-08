@@ -23,9 +23,10 @@ export class ContentVocabularyComponent implements OnInit {
   child_category:any[];
   url:string;
   isLogin:string;
-  temp:any[];
+  temp:any[]; 
   course:string;
   urlTest:string;
+  isReading:boolean = false;
   ngOnInit() {
     this.url = window.location.pathname.slice(0,window.location.pathname.lastIndexOf('/')+1);
     this.activatedService.paramMap.subscribe(data=>{
@@ -63,7 +64,14 @@ export class ContentVocabularyComponent implements OnInit {
     return this.temp;
   }
   read(word){
+    if(this.isReading==false){
+    // window.speechSynthesis.cancel();
+    this.isReading=true;
     window.speechSynthesis.speak(new SpeechSynthesisUtterance(word));
+    setTimeout(()=>{
+      this.isReading=false;
+    },1000)
+    }
   }
   addAndRemoveBookmark(word){
     if(word.isBookmark){

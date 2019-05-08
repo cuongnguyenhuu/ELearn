@@ -124,7 +124,7 @@ export class ContentTestComponent implements OnInit {
       this.matches = data.matches;
       this.showDialog=false;
       if(this.list_question.length>0){
-        this.countDown(10);
+        this.countDown(60*30);
       }
     });
     }
@@ -132,8 +132,11 @@ export class ContentTestComponent implements OnInit {
     toggleDialogTest(){
     if(this.showDialog==false){
       this.categories_selected=[];
+      this.list_question=null;
+      clearInterval(count);
     }
     this.showDialog=!this.showDialog;
+    console.log(this.showDialog);
   }
   option(id){
     if(this.categories_selected.indexOf(id)==-1){

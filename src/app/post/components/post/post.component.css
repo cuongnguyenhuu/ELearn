@@ -159,6 +159,7 @@
 	flex-wrap: wrap;
 	justify-content: center;
 	height: 100%;
+	background: white;
     /*align-items: center;*/
 }
 .black{
@@ -195,6 +196,7 @@
 	padding:15px;
     box-sizing: border-box;
     z-index: 10;
+    height: 100%;
     /*height: inherit;*/
 }
 .infor, .text_content, .like_comment_save, .input_comment, .comments{
@@ -807,7 +809,7 @@ img{
 		height: 70%;
 	}
 	.detailPost{
-		width: 100%;
+		/*width: 100%;*/
 		padding: 20px 60px;
 	}
 }

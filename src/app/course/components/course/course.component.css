@@ -95,3 +95,8 @@
 		opacity: 1;
 	}
 }
+@media (max-width: 575.98px) {
+	.vocabulary, .grammar, .practice{
+		width: 100%;
+	}
+}

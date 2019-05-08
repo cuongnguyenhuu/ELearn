@@ -1,3 +1,7 @@
+p{
+	white-space: pre-line;
+	text-align: left;
+}
 .comment_loader > .img_user_comment{
 	width: 40px;
 	height: 40px;
@@ -182,6 +186,7 @@
 	text-align: center;
 	/*z-index: 1;*/
 	padding: 20px 110px;
+	width: 100%;
 }
 .detailPost > div{
 	display: flex;
@@ -189,6 +194,7 @@
 	flex-wrap: wrap;
 	justify-content: center;
 	height: 100%;
+	/*background: white;*/
     /*align-items: center;*/
 }
 .black{
@@ -225,7 +231,8 @@
 	padding:15px;
     box-sizing: border-box;
     z-index: 10;
-    height: inherit;
+    height: 100%;
+    overflow: auto;
 }
 .infor, .text_content, .like_comment_save, .input_comment, .comments{
 	display: flex;
@@ -234,8 +241,8 @@
 	align-items: center;
 }
 .comments{
-	height: 300px;
-	overflow: auto;
+	/*height: 300px;*/
+	/*overflow: auto;*/
 	display: block;
 }
 .like_comment_save{
@@ -303,6 +310,7 @@
 .text_content{
 	padding: 20px;
     padding-bottom: 50px;
+    width: auto;
 }
 .content_comment >a{
 	text-decoration: none;
@@ -808,7 +816,7 @@ img{
 	background: #4f84c4;
     color: white;
 }
-@media (max-width: 991.98px) { 
+@media (max-width: 991.98px) {  
 	.questions{
 		width: 100%;
 	}

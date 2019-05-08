@@ -1,4 +1,4 @@
-
+<app-notification *ngIf="message!=null" [value]="message"></app-notification>
 	<div class="content_community">
 		<div class="title_intro">
 			<span>COMMUNITY</span>
@@ -12,7 +12,7 @@
 					<div class=" section1 main_post">
 						<img *ngIf="profile.img==null" class="img_user" src="./../../../assets/images/user.png" width="30px" height="30px">
 						<img *ngIf="profile.img!=null" class="img_user" src="https://elearn-anhhong.c9users.io/images/{{profile.img}}" width="30px" height="30px">
-						<textarea rows="2" placeholder="Type your question..." [(ngModel)]="content_post" #textbox (change)="content_post = textbox.value"></textarea>
+						<textarea rows="2" placeholder="Type your question..." [(ngModel)]="content_post" #textbox (change)="content_post = textbox.value" minlength="10"></textarea>
 					</div>
 					<div class="section1 attachment_post">
 						<div class="preview_img_upload" *ngIf="list_img.length>0">
@@ -41,7 +41,7 @@
 								<div class="list_tag" *ngIf="showTag">
 									<div class="tag" *ngFor="let tag of tags">
 										<input type="checkbox" name=""[checked]="tagsSelected.indexOf(tag)!=-1?true:false" id="{{tag._id}}" (change)="add_remove_tag(tag)">
-										<span>{{tag.name}}</span>
+										<label for="{{tag._id}}">{{tag.name}}</label>
 									</div>
 								</div>
 							</a>
@@ -73,12 +73,12 @@
 						<div class="function">
 							<i (click)="tongleFuntion(post._id)"   (clickOutside)="idPost==post._id?idPost='':null" class="fa fa-ellipsis-h" aria-hidden="true"></i>
 							<div class="list_function" *ngIf="idPost==post._id">
-								<div *ngIf="profile.id==post.profile._id" (click)="toggleEdit(post)" >
+								<div *ngIf="profile.id==post.profile._id||profile.id==post.profile.id" (click)="toggleEdit(post)" >
 									<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 									<span>Edit post</span>
 									
 								</div>
-								<div *ngIf="profile.id==post.profile._id" (click)="toggleDelete(post)">
+								<div *ngIf="profile.id==post.profile._id||profile.id==post.profile.id" (click)="toggleDelete(post)">
 									<i class="fa fa-trash-o" aria-hidden="true"></i>
 									<span>Delete post</span>
 									
@@ -97,7 +97,7 @@
 							<span>{{objectTag[tag]}}</span>
 						</div>
 						<div class="content_question">
-							<span>{{post.content}}</span>
+							<p>{{post.content}}</p>
 						</div>
 						<div class="imgs" >
 							<img *ngFor="let img of post.imgs" [style.width.%]="post.imgs.length>1?40:80" src="https://elearn-anhhong.c9users.io/images/{{img}}" (click)="toggleDetail(post,img)">
@@ -247,6 +247,7 @@
 					</div>
 				</div>
 				<div class="white">
+					<div style="display: block;width: 100%;">
 					<div class="infor">
 						<div class="imgUserPost">
 							<img *ngIf="postDetail.profile.img==null"  src="./../../../assets/images/user.png" width="50px" height="50px">
@@ -262,7 +263,7 @@
 						</div>
 					</div>
 					<div class="text_content">
-						<span>{{postDetail.content}}</span>
+						<p>{{postDetail.content}}</p>
 					</div>
 					<div class="like_comment_save" *ngIf="profile!=null">
 						<div class="box" >
@@ -277,8 +278,8 @@
 					</div>
 					<div class="input_comment" *ngIf="profile!=null">
 						<div class="img_current_user">
-							<img *ngIf="profile==null" class="img_user" src="./../../../assets/images/user.png" width="40px" height="40px">
-							<img *ngIf="profile!=null" class="img_user" src="https://elearn-anhhong.c9users.io/images/{{profile.img}}" width="40px" height="40px">
+							<img *ngIf="profile.img==null" class="img_user" src="./../../../assets/images/user.png" width="40px" height="40px">
+							<img *ngIf="profile.img!=null" class="img_user" src="https://elearn-anhhong.c9users.io/images/{{profile.img}}" width="40px" height="40px">
 						</div>
 						<div class="input">
 							<input type="text" name="" placeholder="Write a comment" [(ngModel)]="input_comment" (keydown.enter)="addComment()">
@@ -336,6 +337,8 @@
 
 					</div>
 				</div>
+				</div>
+
 			</div>
 			<div class="dialog" *ngIf="showEditComment">
 				<div class="background_gray" (click)="toggleEditComment()">

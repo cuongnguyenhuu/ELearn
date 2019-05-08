@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule,Routes } from '@angular/router';
  import { NgxSpinnerModule } from 'ngx-spinner';
  import { FormsModule } from '@angular/forms';
+ import { NotificationModule } from './../notification/notification.module'
 //components
 import { ContentProfileComponent } from './components/content-profile/content-profile.component';
 //service
@@ -22,6 +23,7 @@ const profileRoutes: Routes = [
     FormsModule,
      NgxSpinnerModule,
     CommonModule,
+    NotificationModule,
     RouterModule.forChild(profileRoutes)
   ],
   providers: [

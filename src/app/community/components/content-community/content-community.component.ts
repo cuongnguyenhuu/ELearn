@@ -33,7 +33,7 @@ export class ContentCommunityComponent implements OnInit {
   postDelete:Post;
   postDetail:Post;
   comments:Comment[];
-  input_comment:string;
+  input_comment:string='';
   imgCurrent:string;
   isWidthAuto:boolean;
   showEditComment:boolean=false;
@@ -53,6 +53,7 @@ export class ContentCommunityComponent implements OnInit {
   tagGetPosts:string;
   isLoadComments:boolean=true;
   temp:any[];
+  message:string;
   constructor( 
     private postService:PostService,
     private profileService:ProfileService,
@@ -254,6 +255,10 @@ export class ContentCommunityComponent implements OnInit {
         this.toggleDeleteComment();
         this.spinner.hide();
         this.toggleFunctionComment(null);
+        this.message="Delete success!";
+        setTimeout(()=>{
+          this.message = null;
+        },2000);
       }
     },error=>{
       console.log(error);
@@ -286,6 +291,10 @@ export class ContentCommunityComponent implements OnInit {
         this.spinner.hide();
         this.toggleEditComment();
         this.toggleFunctionComment(null);
+        this.message="Edit success!";
+        setTimeout(()=>{
+          this.message = null;
+        },2000);
       }
     },error=>{
       this.spinner.hide();
@@ -328,6 +337,7 @@ export class ContentCommunityComponent implements OnInit {
   }
   addComment(){
     // console.log(this.input_comment);
+    if(this.input_comment!=''){
     this.postService.addComment(this.input_comment,this.postDetail._id).subscribe(data=>{
       // console.log(data);
       if(data!=null){
@@ -340,6 +350,7 @@ export class ContentCommunityComponent implements OnInit {
     },error=>{
       console.log(error);
     });
+    }
   }
   toggleDetail(post,img){
      this.isLoadComments =true;
@@ -372,6 +383,10 @@ export class ContentCommunityComponent implements OnInit {
     this.postService.deletePost(this.postDelete._id).subscribe(data=>{
       // console.log(data);
       this.posts.splice(this.posts.indexOf(this.postDelete),1);
+      this.message="Delete success!";
+        setTimeout(()=>{
+          this.message = null;
+        },2000);
       this.spinner.hide();
     },error=>{
       console.log(error);
@@ -393,6 +408,10 @@ export class ContentCommunityComponent implements OnInit {
       // console.log(data);
       this.posts[this.posts.indexOf(this.postEdit)].content = this.content_edit_post;
       this.spinner.hide();
+      this.message="Edit success!";
+        setTimeout(()=>{
+          this.message = null;
+        },2000);
     },error=>{
       console.log(error);
       this.spinner.hide();
@@ -434,7 +453,8 @@ export class ContentCommunityComponent implements OnInit {
     for (var i = 0; i < this.tagsSelected.length; ++i) {
         list_id_tag_selected[i] = this.tagsSelected[i]._id;
       }
-    if(this.content_post!=''||this.list_img.length>0)
+      console.log(this.profile);
+    if(this.content_post.length>10){
     this.postService.addPost(this.content_post,this.list_img,this.tagsSelected).subscribe(data=>{
       // console.log(data.post);
       // console.log("value: "+this.content_post+"/"+this.list_img);
@@ -452,6 +472,12 @@ export class ContentCommunityComponent implements OnInit {
     },error=>{
       console.log(error);
     })
+  }else{
+    this.message="You must input more than 10 characters!";
+        setTimeout(()=>{
+          this.message = null;
+        },2000);
+  }
     // console.log(this.content_post);
     // console.log(this.list_img);
   }

@@ -55,6 +55,7 @@ export class NavigationComponent implements OnInit {
   showSubMenu:boolean=false;
   showMenu:boolean =true;
   categories:Category[];
+  message:string;
   ngOnInit() {
     if (localStorage.getItem("token")!=null) {
       this.isLogin = true;
@@ -152,7 +153,12 @@ export class NavigationComponent implements OnInit {
         this.getProfile();
         this.showFormLogin();
         this.isLogin = !this.isLogin;
+
         window.location.reload();
+        this.message="You logged";
+        setTimeout(()=>{
+          this.message = null;
+        },2000);
       }
       else{
         this.message_error="Username or password incorrect! Please type again."
@@ -189,6 +195,10 @@ export class NavigationComponent implements OnInit {
             this.showFormRegister();
             this.isLogin = !this.isLogin;
             window.location.reload();
+            this.message="You have logged in!";
+            setTimeout(()=>{
+              this.message = null;
+            },2000);
           }
           else{
             this.message_error="Username aready exist!."

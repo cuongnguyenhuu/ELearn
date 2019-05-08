@@ -20,6 +20,7 @@ export class ResultSearchComponent implements OnInit {
   listPost:any[];
   listWord:any[];
   public objectTag={};
+  isReading:boolean = false;
   ngOnInit() {
   	this.activatedRouteService.queryParams.subscribe(data=>{
   		// console.log(data);
@@ -44,7 +45,14 @@ export class ResultSearchComponent implements OnInit {
   	})
   }
   read(word){
-     window.speechSynthesis.speak(new SpeechSynthesisUtterance(word));
+        if(this.isReading==false){
+    // window.speechSynthesis.cancel();
+    this.isReading=true;
+    window.speechSynthesis.speak(new SpeechSynthesisUtterance(word));
+    setTimeout(()=>{
+      this.isReading=false;
+    },1000)
+    }
   }
   addAndRemoveBookmark(word){
     if(word.isBookmark){
