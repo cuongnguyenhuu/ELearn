@@ -473,7 +473,7 @@ export class ContentCommunityComponent implements OnInit {
       console.log(error);
     })
   }else{
-    this.message="You must input more than 10 characters!";
+    this.message="You must input more 10 characters!";
         setTimeout(()=>{
           this.message = null;
         },2000);
