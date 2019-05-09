@@ -123,9 +123,9 @@
 				<span><i class="fa fa-bars" aria-hidden="true"></i>  Choose test</span>
 			</div>
 			<div class="buttons" *ngIf="listVocab!=null && listGrammar!=null">
-				<a class="button" [routerLink]="[url]" [queryParams]="{type: vocab._id}" *ngFor="let vocab of listVocab" >{{vocab.name}}</a>
+				<a class="button"  *ngFor="let vocab of listVocab" (click)="reTest(vocab._id)" >{{vocab.name}}</a>
 				<!-- <input class="button" type="button" name="" value="A1" *ngFor="let item of createRang(5)"> -->
-				<a class="button" [routerLink]="[url]" [queryParams]="{type: grammar._id}"  *ngFor="let grammar of listGrammar" >{{grammar.name}}</a>
+				<a class="button"   *ngFor="let grammar of listGrammar" (click)="reTest(grammar._id)" >{{grammar.name}}</a>
 				<a class="button" (click)="toggleDialogTest()"  >Choose multiple parts</a>
 			</div>
 		</div>

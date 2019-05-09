@@ -44,6 +44,7 @@ export class ContentTestComponent implements OnInit {
        this.list_selected.push(id_question);
      }
   }
+
   moveTo(id_question){
     var question = document.getElementById("question"+id_question);
     question.scrollIntoView();
@@ -68,6 +69,16 @@ export class ContentTestComponent implements OnInit {
      this.url = window.location.pathname;
     this.getAllCategories();
     
+  }
+  reTest(id){
+    clearInterval(count);
+    this.list_selected=[];
+    this.timeleft='';
+    this.total_question_correct=null;
+    this.list_question=null;
+    this.showDialog=false;
+    this.categories_selected.push(id);
+    this.createTest();
   }
   submitTest(){
     let j=0;
@@ -116,6 +127,7 @@ export class ContentTestComponent implements OnInit {
   //   clearInterval(this.count);
   // }
     createTest(){
+     this.total_question_correct=null;
     console.log(this.categories_selected);
     if(this.categories_selected.length>0){
     this.testService.getAllTest(this.categories_selected,20).subscribe(data=>{
