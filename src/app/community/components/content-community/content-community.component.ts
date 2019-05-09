@@ -148,6 +148,17 @@ export class ContentCommunityComponent implements OnInit {
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
     this.showDetail = false;
   }
+  getPostByTag(){
+    let tag_name = (document.getElementById('select_post') as HTMLInputElement).value;
+    if(tag_name!=""){
+    this.routerService.navigateByUrl("/community?tag="+tag_name);
+    }
+    else{
+      this.routerService.navigateByUrl("/community");
+    }
+    // let tag_name = tag_name.value;
+
+  }
   createArray(number){
     this.temp = [];
     for (var i = 0; i < number; ++i) {
@@ -160,6 +171,10 @@ export class ContentCommunityComponent implements OnInit {
     this.bookmarkService.saveBookmark(post._id).subscribe(data=>{
       console.log(data);
       this.posts[this.posts.indexOf(post)].isBookmark=true;
+      this.message="Save bookmark success!";
+        setTimeout(()=>{
+          this.message = null;
+        },2000);
     },error=>{
       console.log(error);
     });
@@ -167,6 +182,10 @@ export class ContentCommunityComponent implements OnInit {
       this.bookmarkService.removeBookmark(post._id).subscribe(data=>{
         console.log(data);
         this.posts[this.posts.indexOf(post)].isBookmark=false;
+        this.message="Remove bookmark success!";
+        setTimeout(()=>{
+          this.message = null;
+        },2000);
       },error=>{
         console.log(error);
       })

@@ -21,6 +21,7 @@ export class ResultSearchComponent implements OnInit {
   listWord:any[];
   public objectTag={};
   isReading:boolean = false;
+  message:string;
   ngOnInit() {
   	this.activatedRouteService.queryParams.subscribe(data=>{
   		// console.log(data);
@@ -59,6 +60,10 @@ export class ResultSearchComponent implements OnInit {
       this.bookmarkService.saveWordBookmark(word._id).subscribe(data=>{
         console.log(data);
         this.listWord[this.listWord.indexOf(word)].isBookmark=false;
+        this.message="Remove bookmark success!";
+        setTimeout(()=>{
+          this.message = null;
+        },1500);
       })
 
     }
@@ -66,6 +71,10 @@ export class ResultSearchComponent implements OnInit {
     this.bookmarkService.saveWordBookmark(word._id).subscribe(data=>{
       console.log(data);
       this.listWord[this.listWord.indexOf(word)].isBookmark=true;
+      this.message="Save bookmark success!";
+        setTimeout(()=>{
+          this.message = null;
+        },1500);
     });
     }
   }

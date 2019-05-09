@@ -29,7 +29,6 @@ export class CourseComponent implements OnInit {
 
   
   ngOnInit() {
-    this.url = window.location.pathname;
   	this.getAllCategories();
   	// console.log(this.category);  	
   }
@@ -51,6 +50,9 @@ export class CourseComponent implements OnInit {
   	
     this.activeRouteService.paramMap.subscribe(data=>{
       if(data!=null){
+        this.listGrammar=null;
+        this.listVocab=null;
+        this.url = window.location.pathname;
         this.category_name = data.get('course');
         this.categoryService.getAllCategory().subscribe(data=>{
           if(data!=null){
@@ -63,6 +65,7 @@ export class CourseComponent implements OnInit {
             console.log(this.category);
             this.getType();
           }
+          // this.categories =[];
         },error=>{
           console.log(error);
         });

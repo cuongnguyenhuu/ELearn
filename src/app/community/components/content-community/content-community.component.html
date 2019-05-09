@@ -172,6 +172,12 @@
 						<span class="title_setting">Shortcuts</span>
 					</div>
 					<div class="section3">
+						<select class="button_cancel_custom" id="select_post" (change)="getPostByTag()">
+							<option name="tag" selected="tagGetPosts == null" value="" >Post's all tags</option>
+							<option name="tag" [selected]="tag.name == tagGetPosts"   *ngFor="let tag of tags" value="{{tag.name}}">Post's {{tag.name}}</option>
+						</select>
+					</div>
+					<div class="section3">
 						<input class="button_cancel_custom" [routerLink]="['/level/B1']" type="button" name="" value="B1">
 					</div>
 					<div class="section3">

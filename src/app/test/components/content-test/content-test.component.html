@@ -126,7 +126,7 @@
 				<a class="button" [routerLink]="[url]" [queryParams]="{type: vocab._id}" *ngFor="let vocab of listVocab" >{{vocab.name}}</a>
 				<!-- <input class="button" type="button" name="" value="A1" *ngFor="let item of createRang(5)"> -->
 				<a class="button" [routerLink]="[url]" [queryParams]="{type: grammar._id}"  *ngFor="let grammar of listGrammar" >{{grammar.name}}</a>
-				<a class="button" (click)="toggleDialogTest()"  >Set test</a>
+				<a class="button" (click)="toggleDialogTest()"  >Choose multiple parts</a>
 			</div>
 		</div>
 		<div class="section2 button_submit" *ngIf="list_question!=null&&list_question.length>0">

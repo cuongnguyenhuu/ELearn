@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule,Routes } from '@angular/router';
-
+import { NotificationModule} from './../notification/notification.module'
 //components
 import { ContentVocabularyComponent } from './components/content-vocabulary/content-vocabulary.component';
 const vocabularyRoutes: Routes = [
@@ -15,6 +15,7 @@ const vocabularyRoutes: Routes = [
   ContentVocabularyComponent
   ],
   imports: [
+  NotificationModule,
     CommonModule,
     RouterModule.forChild(vocabularyRoutes)
   ]

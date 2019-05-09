@@ -94,6 +94,7 @@
 }
 .infor img{
     border-radius: 50%;
+    object-fit: cover;
 }
 .infor span{
     font-weight: bold;

@@ -69,12 +69,12 @@ export class ContentProfileComponent implements OnInit {
     })
   }
   logout(){
-  	
-    this.message="You have logged out!";
-    setTimeout(()=>{
-              this.message = null;
-              this.loginService.logout();
-    },1000);
+  	this.loginService.logout();
+    // this.message="You have logged out!";
+    // setTimeout(()=>{
+    //           this.message = null;
+              
+    // },1000);
 
   }
   toggle_dialog(name:string){

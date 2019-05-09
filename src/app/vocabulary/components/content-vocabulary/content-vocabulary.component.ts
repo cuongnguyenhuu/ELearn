@@ -27,12 +27,13 @@ export class ContentVocabularyComponent implements OnInit {
   course:string;
   urlTest:string;
   isReading:boolean = false;
+  message:string;
   ngOnInit() {
-    this.url = window.location.pathname.slice(0,window.location.pathname.lastIndexOf('/')+1);
+   
     this.activatedService.paramMap.subscribe(data=>{
       console.log(data.get('id'));
       this.isLogin = localStorage.getItem('token');
-      
+      this.url = window.location.pathname.slice(0,window.location.pathname.lastIndexOf('/')+1);
       this.listWord=null;
       if(data!=null){
         this.id_category=data.get('id');
@@ -78,6 +79,10 @@ export class ContentVocabularyComponent implements OnInit {
       this.bookmarkService.saveWordBookmark(word._id).subscribe(data=>{
         console.log(data);
         this.listWord[this.listWord.indexOf(word)].isBookmark=false;
+        this.message="Remove bookmark success!";
+        setTimeout(()=>{
+          this.message = null;
+        },1500);
       })
 
     }
@@ -85,6 +90,10 @@ export class ContentVocabularyComponent implements OnInit {
     this.bookmarkService.saveWordBookmark(word._id).subscribe(data=>{
       console.log(data);
       this.listWord[this.listWord.indexOf(word)].isBookmark=true;
+      this.message="Save bookmark success!";
+        setTimeout(()=>{
+          this.message = null;
+        },1500);
     });
     }
   }

@@ -1,10 +1,10 @@
 <div class="introduce">
 	<div class="slider">
-		<input type="radio" name="slide" value='1' class="slide" id="slide1" [(ngModel)]="number_slide" >
-		<input type="radio" name="slide" value='2' class="slide" id="slide2" [(ngModel)]="number_slide" >
-		<input type="radio" name="slide" value='3' class="slide" id="slide3" [(ngModel)]="number_slide">
-		<input type="radio" name="slide" value='4' class="slide" id="slide4" [(ngModel)]="number_slide">
-		<input type="radio" name="slide" value='5' class="slide" id="slide5" [(ngModel)]="number_slide">
+		<input type="radio" name="slide" value='1' class="slide" id="slide1" (click)="OnChangeLeft(0)" [(ngModel)]="number_slide" >
+		<input type="radio" name="slide" value='2' class="slide" id="slide2" (click)="OnChangeLeft(1)" [(ngModel)]="number_slide" >
+		<input type="radio" name="slide" value='3' class="slide" id="slide3" (click)="OnChangeLeft(2)" [(ngModel)]="number_slide">
+		<input type="radio" name="slide" value='4' class="slide" id="slide4" (click)="OnChangeLeft(3)" [(ngModel)]="number_slide">
+		<input type="radio" name="slide" value='5' class="slide" id="slide5" (click)="OnChangeLeft(4)" [(ngModel)]="number_slide">
 		<figure id="content">
 			
 
