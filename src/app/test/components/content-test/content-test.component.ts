@@ -59,7 +59,7 @@ export class ContentTestComponent implements OnInit {
                this.list_selected=[];
             this.timeleft='';
             this.total_question_correct=null;
-            this.list_question=null;
+            this.list_question=[];
           if(this.query!="choose"){
             this.showDialog=false;
              this.categories_selected.push(this.query);
@@ -102,6 +102,7 @@ export class ContentTestComponent implements OnInit {
       this.list_question=[];
       this.total_question_correct = data.match;
       clearInterval(count);
+      this.isSubmitting=false;
     })
     // this.list_question
     console.log(this.list_answers);
@@ -148,8 +149,11 @@ export class ContentTestComponent implements OnInit {
     toggleDialogTest(){
     if(this.showDialog==false){
       this.categories_selected=[];
-      this.list_question=null;
+      this.list_question=[];
       clearInterval(count);
+    }
+    else{
+      this.list_question=[];
     }
     this.showDialog=!this.showDialog;
     console.log(this.showDialog);
@@ -218,4 +222,11 @@ export class ContentTestComponent implements OnInit {
   }
   return items;
   }
+   ngOnDestroy(){
+     clearInterval(count);
+     this.list_selected=[];
+     this.timeleft='';
+     this.total_question_correct=null;
+      this.list_question=null;
+   }
 }

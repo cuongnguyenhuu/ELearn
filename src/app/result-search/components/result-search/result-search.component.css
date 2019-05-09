@@ -171,9 +171,11 @@ a{
     font-size: 20px;
     color: #005ccc;
     font-weight: bold;
+    word-break: break-all;
 }
 .tags{
     margin: 5px 0px;
+    display: contents;
 }
 .tags span{
     background: #14bdee;
@@ -181,6 +183,7 @@ a{
     padding: 0px 5px;
     border-radius: 10px;
     margin: 5px;
+    display: inline-block;
 }
 .total_photos{
     color: #8c8c8c;

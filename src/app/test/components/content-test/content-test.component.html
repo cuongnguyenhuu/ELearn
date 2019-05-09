@@ -135,7 +135,7 @@
 		
  	</div>
 <div class="dialog" *ngIf="showDialog">
-	<div class="background">
+	<div class="background" (click)="toggleDialogTest()">
 		
 	</div>
 	<dialog open class="content_dialog" *ngIf="listVocab!=null && listGrammar!=null" >
@@ -151,6 +151,7 @@
 			<label for="{{grammar._id}}">{{grammar.name}}</label>
 		</div>
 		<div class="boxButton">
+			<input type="button" name="" value="Cancel" (click)="toggleDialogTest()">
 			<input type="button" name="" value="Create" (click)="createTest()">
 		</div>
 		

@@ -443,10 +443,13 @@ img{
     right: -10px;
 }
 .preview_img_upload{
-	display: contents ;
+	display: flex ;
 	width: 100%;
 	/*margin: 10px 0px;*/
 	margin-bottom: 10px;
+}
+.tag_preview{
+	display: contents ;
 }
 .box_button{
 	display: block;
@@ -806,6 +809,11 @@ img{
     color: #4f84c4;
     font-weight: bold;
     border-radius: 0px;
+ }
+ .button_cancel_custom:hover{
+ 	background: #4f84c4;
+    color: white;
+    cursor: pointer;
  }
  .title{
  	margin-bottom: 3px;
