@@ -29,6 +29,7 @@ export class ContentTestComponent implements OnInit {
   list_selected:any[]=[];
   matches:any;
   total_question_correct:any;
+  isSubmitting:boolean = false;
   // count:any;
   constructor(
     public activeRouteService: ActivatedRoute,
@@ -81,6 +82,8 @@ export class ContentTestComponent implements OnInit {
     this.createTest();
   }
   submitTest(){
+    if(this.isSubmitting==false){
+      this.isSubmitting=true;
     let j=0;
     this.list_question.forEach(question=>{
       let i=0;
@@ -102,6 +105,7 @@ export class ContentTestComponent implements OnInit {
     })
     // this.list_question
     console.log(this.list_answers);
+    }
   }
   countDown(duration){ 
     var timer:number = duration, minutes=null, seconds=null;

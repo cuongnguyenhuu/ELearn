@@ -1,6 +1,7 @@
 p{
 	white-space: pre-line;
 	text-align: left;
+	word-break: break-all;
 }
 .comment_loader > .img_user_comment{
 	width: 40px;
@@ -442,7 +443,7 @@ img{
     right: -10px;
 }
 .preview_img_upload{
-	display: flex;
+	display: contents ;
 	width: 100%;
 	/*margin: 10px 0px;*/
 	margin-bottom: 10px;

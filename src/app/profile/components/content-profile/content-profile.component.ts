@@ -63,9 +63,17 @@ export class ContentProfileComponent implements OnInit {
     this.profileService.changePassword(this.password_old,this.password_new,this.rePassword).subscribe(data=>{
       console.log(data);
       this.spinner.hide();
+      this.message="Change success!";
+            setTimeout(()=>{
+              this.message = null;
+            },1500);
     },error=>{
       console.log(error);
       this.spinner.hide();
+      this.message="Change failed!";
+            setTimeout(()=>{
+              this.message = null;
+            },1500);
     })
   }
   logout(){
@@ -87,7 +95,7 @@ export class ContentProfileComponent implements OnInit {
         break;
       case "birthday":
         let date = new Date(this.profile.birthday);
-        this.value_dialog=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+(date.getDate()<10?'0'+date.getDate():date.getDate());
+        this.value_dialog=date.getFullYear()+"-"+((date.getMonth()+1)<10?'0'+(date.getMonth()+1):(date.getMonth()+1))+"-"+(date.getDate()<10?'0'+date.getDate():date.getDate());
         // console.log(this.value_dialog);
         break;
       case "address":
@@ -124,7 +132,15 @@ export class ContentProfileComponent implements OnInit {
         }
         break;
       case "birthday":
+      console.log(Date.parse(this.value_dialog).toString()+"/"+Date.now().toString())
+
+        if(Number.parseInt(Date.parse(this.value_dialog).toString()) < Number.parseInt(Date.now().toString())&&Number.parseInt(Date.parse(this.value_dialog).toString())>0){
         this.profile.birthday = Date.parse(this.value_dialog).toString();
+        this.messageError=''
+      }
+      else{
+        this.messageError = "Your birthday invalid !"
+      }
         // console.log( Date.parse(this.value_dialog).toString());
         break;
       case "address":
@@ -176,7 +192,7 @@ export class ContentProfileComponent implements OnInit {
       this.message="Update success!";
             setTimeout(()=>{
               this.message = null;
-            },2000);
+            },1500);
       // window.location.href="/profile";
     },error=>{
       console.log(error);

@@ -4,7 +4,9 @@ import { PostComponent } from './components/post/post.component';
 import { RouterModule,Routes } from '@angular/router';
  import { FormsModule } from '@angular/forms';
 
-
+import { PostService } from'./../services/post.service';
+import { TagService } from'./../services/tag.service';
+import { NotificationModule} from './../notification/notification.module'
 const postRoutes: Routes = [
    {
     path: 'post/:id',
@@ -16,9 +18,14 @@ const postRoutes: Routes = [
     PostComponent
   ],
   imports: [
+    NotificationModule,
     CommonModule,
     FormsModule,
     RouterModule.forChild(postRoutes)
+  ],
+  providers:[
+    PostService,
+    TagService
   ]
 })
 export class PostModule { }

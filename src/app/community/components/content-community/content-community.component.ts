@@ -54,6 +54,7 @@ export class ContentCommunityComponent implements OnInit {
   isLoadComments:boolean=true;
   temp:any[];
   message:string;
+  isLiking:boolean=false;
   constructor( 
     private postService:PostService,
     private profileService:ProfileService,
@@ -174,7 +175,7 @@ export class ContentCommunityComponent implements OnInit {
       this.message="Save bookmark success!";
         setTimeout(()=>{
           this.message = null;
-        },2000);
+        },1500);
     },error=>{
       console.log(error);
     });
@@ -185,7 +186,7 @@ export class ContentCommunityComponent implements OnInit {
         this.message="Remove bookmark success!";
         setTimeout(()=>{
           this.message = null;
-        },2000);
+        },1500);
       },error=>{
         console.log(error);
       })
@@ -215,26 +216,31 @@ export class ContentCommunityComponent implements OnInit {
     this.showTag = !this.showTag;
   }
   like(post){
-    // console.log(post);
-    // this.posts[this.posts.indexOf[post]].isLike=!this.posts[this.posts.indexOf[post]].isLike;
-    if(post.isLike==false){
-    this.postService.addLike(post._id).subscribe(data=>{
-      console.log(data);
-      // console.log(this.posts.indexOf(post));
-      this.posts[this.posts.indexOf(post)].likes =this.posts[this.posts.indexOf(post)].likes +1 ;
-      this.posts[this.posts.indexOf(post)].isLike = true;
-    },error=>{
-      console.log(error);
-    })
-    }
-    else{
-      this.postService.unLike(post._id).subscribe(data=>{
+    if(this.isLiking==false){
+      this.isLiking=true;
+      // console.log(post);
+      // this.posts[this.posts.indexOf[post]].isLike=!this.posts[this.posts.indexOf[post]].isLike;
+      if(post.isLike==false){
+      this.postService.addLike(post._id).subscribe(data=>{
         console.log(data);
-        this.posts[this.posts.indexOf(post)].likes =this.posts[this.posts.indexOf(post)].likes -1 ;
-        this.posts[this.posts.indexOf(post)].isLike = false;
+        // console.log(this.posts.indexOf(post));
+        this.posts[this.posts.indexOf(post)].likes =this.posts[this.posts.indexOf(post)].likes +1 ;
+        this.posts[this.posts.indexOf(post)].isLike = true;
+        this.isLiking=false;
       },error=>{
         console.log(error);
       })
+      }
+      else{
+        this.postService.unLike(post._id).subscribe(data=>{
+          console.log(data);
+          this.posts[this.posts.indexOf(post)].likes =this.posts[this.posts.indexOf(post)].likes -1 ;
+          this.posts[this.posts.indexOf(post)].isLike = false;
+           this.isLiking=false;
+        },error=>{ 
+          console.log(error);
+        })
+      }
     }
   }
   loadMore(tag_id){
