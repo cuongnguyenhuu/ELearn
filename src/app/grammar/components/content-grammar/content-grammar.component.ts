@@ -42,11 +42,11 @@ export class ContentGrammarComponent implements OnInit {
           this.id_category_parent = data.category.parent;
           this.categorySerivice.getType(this.id_category_parent).subscribe(data=>{
           console.log(data);
-            this.child_category = data.children.reverse();
+            this.child_category = data.children;
           });
         });
         this.grammarService.getAllGrammar(this.id_category).subscribe(data=>{
-          this.listGrammar = data.grammars.reverse();
+          this.listGrammar = data.grammars;
           console.log(data)
           console.log(this.listGrammar);
         });

@@ -74,7 +74,7 @@ export class NavigationComponent implements OnInit {
   }
   getCategory(){
     this.categoryService.getAllCategory().subscribe(data=>{
-        this.categories = data.categories.reverse();
+        this.categories = data.categories;
         console.log(this.categories);
 
     },error=>{

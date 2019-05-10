@@ -81,12 +81,12 @@ export class CourseComponent implements OnInit {
 	  			this.type = data.children;
 	  			this.categoryService.getType(this.type[1]._id).subscribe(data=>{
 	  				console.log(data);
-	  				this.listVocab = data.children.reverse();
+	  				this.listVocab = data.children;
 	  			},error=>{
 	  				console.log(error);
 	  			});
 	  			this.categoryService.getType(this.type[0]._id).subscribe(data=>{
-	  				this.listGrammar = data.children.reverse();
+	  				this.listGrammar = data.children;
 	  			},error=>{
 	  				console.log(error);
 	  			});

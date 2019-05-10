@@ -9,8 +9,8 @@
 					<span>Avatar</span>
 				</div>
 				<div class="section3">
-					<img class="img_user" src="./../../../assets/images/user.png" width="70px" height="70px" *ngIf="profile.img==''">
-					<img *ngIf="profile.img!=''" class="img_user" src="https://elearn-anhhong.c9users.io/images/{{profile.img}}" width="70px" height="70px">
+					<img class="img_user" src="./../../../assets/images/user.png" width="70px" height="70px" *ngIf="profile.img==''||profile.img==null">
+					<img *ngIf="profile.img!=''&&profile.img!=null" class="img_user" src="https://elearn-anhhong.c9users.io/images/{{profile.img}}" width="70px" height="70px">
 					<label for="update_avatar"><i class="fa fa-camera" aria-hidden="true"></i></label>
 					<input id="update_avatar" class="input_custom" type="file" name="" value="Change" (change)="uploadImg($event)">
 				</div>

@@ -45,11 +45,11 @@ export class ContentVocabularyComponent implements OnInit {
           this.id_category_parent = data.category.parent;
           this.categorySerivice.getType(this.id_category_parent).subscribe(data=>{
           console.log(data);
-            this.child_category = data.children.reverse();
+            this.child_category = data.children;
           });
         });
         this.wordService.getAllWord(this.id_category).subscribe(data=>{
-          this.listWord = data.words.reverse();
+          this.listWord = data.words;
           console.log(data)
           console.log(this.listWord);
         });

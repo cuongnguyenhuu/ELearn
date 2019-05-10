@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router'
 import { CategoryService } from './../../../services/category.service'
 import { TestService } from './../../../services/test.service'
 import { Category } from './../../../models/category.class'
+import { NgxSpinnerService } from 'ngx-spinner';
 
 let count;
 @Component({
@@ -34,6 +35,7 @@ export class ContentTestComponent implements OnInit {
   constructor(
     public activeRouteService: ActivatedRoute,
     public categoryService: CategoryService,
+    private spinner : NgxSpinnerService,
     private testService:TestService
     ) { }
   @HostListener('click', ['$event'])
@@ -83,6 +85,7 @@ export class ContentTestComponent implements OnInit {
   }
   submitTest(){
     if(this.isSubmitting==false){
+      this.spinner.show();
       this.isSubmitting=true;
     let j=0;
     this.list_question.forEach(question=>{
@@ -103,6 +106,9 @@ export class ContentTestComponent implements OnInit {
       this.total_question_correct = data.match;
       clearInterval(count);
       this.isSubmitting=false;
+      this.spinner.hide();
+    },error=>{
+      this.spinner.hide();
     })
     // this.list_question
     console.log(this.list_answers);
@@ -135,11 +141,13 @@ export class ContentTestComponent implements OnInit {
      this.total_question_correct=null;
     console.log(this.categories_selected);
     if(this.categories_selected.length>0){
+      this.list_question=null;
+      this.showDialog=false;
     this.testService.getAllTest(this.categories_selected,20).subscribe(data=>{
       console.log(data);
       this.list_question = data.questions;
       this.matches = data.matches;
-      this.showDialog=false;
+      // this.showDialog=false;
       if(this.list_question.length>0){
         this.countDown(60*30);
       }
@@ -167,7 +175,7 @@ export class ContentTestComponent implements OnInit {
     }
   }
   getAllCategories(){
-    
+    this.spinner.show();
     this.activeRouteService.paramMap.subscribe(data=>{
       if(data!=null){
         this.category_name = data.get('course');
@@ -199,14 +207,17 @@ export class ContentTestComponent implements OnInit {
           this.type = data.children;
           this.categoryService.getType(this.type[1]._id).subscribe(data=>{
             console.log(data);
-            this.listVocab = data.children.reverse();
-
+            this.listVocab = data.children;
+            this.spinner.hide();
           },error=>{
+            this.spinner.hide();
             console.log(error);
           });
           this.categoryService.getType(this.type[0]._id).subscribe(data=>{
-            this.listGrammar = data.children.reverse();
+            this.listGrammar = data.children;
+            this.spinner.hide();
           },error=>{
+            this.spinner.hide();
             console.log(error);
           });
         }
