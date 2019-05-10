@@ -18,9 +18,9 @@ export class ContentProfileComponent implements OnInit {
     private spinner : NgxSpinnerService,
     private routeServie: Router
   	) { }
-  password_old:string;
-  password_new:string
-  rePassword:string;
+  password_old:string='';
+  password_new:string='';
+  rePassword:string='';
   dialog_edit:boolean =false;
   value_dialog:any;
   name:string;
@@ -62,24 +62,41 @@ export class ContentProfileComponent implements OnInit {
   // }
   changePassword(){
     this.password_new = this.value_dialog;
-    this.spinner.show();
-    this.toggle_dialog(name);
+    
     console.log(this.password_old+"/"+this.password_new+"/"+this.rePassword);
-    this.profileService.changePassword(this.password_old,this.password_new,this.rePassword).subscribe(data=>{
-      console.log(data);
+    if(this.password_new!=''&&this.password_old!=''&&this.rePassword!=''){
+    if(this.password_new==this.rePassword){
+        this.spinner.show();
+      this.profileService.changePassword(this.password_old,this.password_new,this.rePassword).subscribe(data=>{
+        console.log(data);
+        if(data.success == true){
+        this.toggle_dialog(name);
+          this.spinner.hide();
+          this.message="Change success!";
+                setTimeout(()=>{
+                  this.message = null;
+                },1500);
+         }else{
+           this.spinner.hide();
+           this.messageError = data.msg;
+         }
+      },error=>{
+        console.log(error);
+        this.spinner.hide();
+        this.message="Change failed!";
+              setTimeout(()=>{
+                this.message = null;
+              },1500);
+      })
+    }
+    else{
       this.spinner.hide();
-      this.message="Change success!";
-            setTimeout(()=>{
-              this.message = null;
-            },1500);
-    },error=>{
-      console.log(error);
-      this.spinner.hide();
-      this.message="Change failed!";
-            setTimeout(()=>{
-              this.message = null;
-            },1500);
-    })
+      this.messageError="Re-password not match!"
+    }
+  }
+    else{
+       this.messageError="Please fill in all fields!"
+    }
   }
   logout(){
   	this.loginService.logout();
@@ -91,6 +108,9 @@ export class ContentProfileComponent implements OnInit {
 
   }
   toggle_dialog(name:string){
+    this.password_new='';
+    this.password_old='';
+    this.rePassword='';
     this.messageError='';
     this.name = name;
     this.dialog_edit = !this.dialog_edit;

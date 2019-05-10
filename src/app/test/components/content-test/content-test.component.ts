@@ -86,6 +86,7 @@ export class ContentTestComponent implements OnInit {
   submitTest(){
     if(this.isSubmitting==false){
       this.spinner.show();
+
       this.isSubmitting=true;
     let j=0;
     this.list_question.forEach(question=>{
@@ -103,10 +104,17 @@ export class ContentTestComponent implements OnInit {
     this.testService.checkAnswer(this.matches,this.list_answers).subscribe(data=>{
       console.log(data);
       this.list_question=[];
+      window.scrollTo({ top: 0 })
       this.total_question_correct = data.match;
       clearInterval(count);
       this.isSubmitting=false;
       this.spinner.hide();
+      // if(this.total_question_correct!=null){
+      // let topResult = document.getElementById('result').offsetTop;
+      // console.log(topResult);
+
+      // window.scrollTo({ top: 0, behavior: 'smooth' })
+      // }
     },error=>{
       this.spinner.hide();
     })

@@ -138,10 +138,10 @@
 	 		<br>
 	 		<br>
 	 		<input *ngIf="name=='password'" class="input_custom" type="password" name="" placeholder="Type your password..." [(ngModel)]="password_old">
-	 		<input *ngIf="name!='gender'&&name!='birthday'" class="input_custom" [type]="name=='password'?'password':'text'" name="" placeholder="Type your change..." [(ngModel)]="value_dialog" value="{{value_dialog}}">
-	 		<input *ngIf="name=='password'" [(ngModel)]="rePassword" class="input_custom" type="password" name="" placeholder="Retype your change...">
-	 		<input *ngIf="name=='birthday'" class="input_custom" type="date" name="" placeholder="Type your change..." [(ngModel)]="value_dialog" value="{{value_dialog}}">
-	 		<select *ngIf="name=='gender'" class="input_custom" [(ngModel)]="value_dialog">
+	 		<input *ngIf="name!='gender'&&name!='birthday'" class="input_custom" [type]="name=='password'?'password':'text'" name="" placeholder="Type your change..." (keydown.enter)="name!='password'?update():null" [(ngModel)]="value_dialog" value="{{value_dialog}}">
+	 		<input *ngIf="name=='password'" (keydown.enter)="changePassword()" [(ngModel)]="rePassword" class="input_custom" type="password" name="" placeholder="Retype your change...">
+	 		<input *ngIf="name=='birthday'" class="input_custom" type="date" name="" placeholder="Type your change..." [(ngModel)]="value_dialog" value="{{value_dialog}}" (keydown.enter)="update()">
+	 		<select *ngIf="name=='gender'" class="input_custom" [(ngModel)]="value_dialog" (keydown.enter)="update()">
 	 			<option [selected]="profile.gender==true" value="true">Male</option>
 	 			<option [selected]="profile.gender==false" value="false">Female</option>
 	 		</select>

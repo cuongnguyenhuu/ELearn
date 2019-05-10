@@ -22,7 +22,14 @@ export class ResultSearchComponent implements OnInit {
   public objectTag={};
   isReading:boolean = false;
   message:string;
+  isLogged:boolean;
   ngOnInit() {
+    if(localStorage.getItem('token')!=null){
+      this.isLogged=true;
+    }
+    else{
+      this.isLogged=false;
+    }
   	this.activatedRouteService.queryParams.subscribe(data=>{
   		// console.log(data);
       this.listPost=null;

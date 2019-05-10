@@ -67,11 +67,16 @@ export class BookmarkComponent implements OnInit {
     }
   }
   removeWord(word){
+    if(this.isRemoving==false){
+      this.isRemoving = true;
     this.bookmarkService.removeWord(word._id).subscribe(data=>{
       console.log(data);
       this.listWord.splice(this.listWord.indexOf(word),1);
+      this.isRemoving=false;
     },error=>{
       console.log(error);
+      this.isRemoving=false;
     })
+  }
   }
 }

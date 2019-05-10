@@ -48,7 +48,7 @@ export class ProfileService {
     return this.http.post(this.API+'upload',formData);
   }
   changePassword(oldPass,newPass,confirmPass){
-    return this.http.post(this.API+"reset",{oldPass,newPass,confirmPass},httpOptions);
+    return this.http.post<any>(this.API+"reset",{oldPass,newPass,confirmPass},httpOptions);
   }
   
 }

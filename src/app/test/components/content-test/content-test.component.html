@@ -44,6 +44,9 @@
 			<!-- <div class="title_content">
 				<label class="label">Test - A1</label>
 			</div> -->
+			<!-- <div id="result">
+				
+			</div> -->
 			<div class="title_content question" *ngFor="let question of list_question; let i = index" id="question{{question._id}}">
 				<div class="require_question section2">
 					{{i+1}}. {{question.content}}
@@ -74,6 +77,7 @@
 					</div>
 				</div> -->
 			</div>
+
 			<div class="title_content question loader" *ngIf="list_question==null">
 				<div class="require_question section2">
 					<label></label>
@@ -112,10 +116,11 @@
 					</div>
 				</div> -->
 			</div>
-			<div class="result question" *ngIf="total_question_correct!=null">
-				<label>Correct: {{total_question_correct}}/20</label>
-				<label>Score: {{total_question_correct*(10/20)}} points</label>
+			<div  class="result question" *ngIf="total_question_correct!=null">
+					<label>Correct: {{total_question_correct}}/20</label>
+					<label>Score: {{total_question_correct*(10/20)}} points</label>
 			</div>
+			
 		</div>
 		
 		<div class="topic">

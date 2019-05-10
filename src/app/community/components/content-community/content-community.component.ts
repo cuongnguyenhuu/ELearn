@@ -437,7 +437,7 @@ export class ContentCommunityComponent implements OnInit {
       this.message="Edit success!";
         setTimeout(()=>{
           this.message = null;
-        },2000);
+        },1500);
     },error=>{
       console.log(error);
       this.spinner.hide();
@@ -461,15 +461,23 @@ export class ContentCommunityComponent implements OnInit {
     this.idPost = id;
   }
   uploadImg(event){
-      this.filetoUpload = event.target.files[0];
-      this.profileService.uploadImg(this.filetoUpload).subscribe(data=>{
-      // console.log(data.imgId);
+    if(this.list_img.length<4){
+        this.filetoUpload = event.target.files[0];
+        this.profileService.uploadImg(this.filetoUpload).subscribe(data=>{
+        // console.log(data.imgId);
 
-      this.list_img.push(data.imgId);
+        this.list_img.push(data.imgId);
 
-    },error=>{
-      console.log(error);
-    });
+      },error=>{
+        console.log(error);
+      });
+    }
+    else{
+       this.message="No upload over 4 images!";
+        setTimeout(()=>{
+          this.message = null;
+        },1500);
+    }
   }
   deleteImg(img){
     this.list_img.splice(this.list_img.indexOf(img),1);

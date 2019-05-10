@@ -7,7 +7,7 @@
 				<div class="section1 vocabulary">
 					{{word.name}} ( {{word.spell}} )
 					<i class="fa fa-volume-up" aria-hidden="true" (click)="read(word.name)"></i>
-					<i class="fa fa-star" aria-hidden="true" (click)="addAndRemoveBookmark(word)" [style.color]="word.isBookmark==true?'#efd300':null"></i>
+					<i *ngIf="isLogged" class="fa fa-star" aria-hidden="true" (click)="addAndRemoveBookmark(word)" [style.color]="word.isBookmark==true?'#efd300':null"></i>
 				</div>
 				<div class="section1 description">
 					{{word.mean}}

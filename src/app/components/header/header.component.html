@@ -8,8 +8,8 @@
 <!-- <body> -->
 	<div class="header">
 		<div class="section logo">
-			<a href="#"><img src="./../../../assets/images/logo_app.png" width="60px" height="60px"></a>
-			<a href="#"><span class="textLogo">ELearn!</span></a>
+			<a [routerLink]="['/']"><img src="./../../../assets/images/logo_app.png" width="60px" height="60px"></a>
+			<a [routerLink]="['/']"><span class="textLogo">ELearn!</span></a>
 		</div>
 		<div class="section search">
 			<input class="searchbox_custom" type="text" name="search" [(ngModel)]="text_search" placeholder="Search..." (keydown.enter)="navigateToSearch()">
@@ -17,13 +17,13 @@
 		</div>
 		<div class="section social">
 			<div class="icon icon_facebook">
-				<a href="#"><i class="fa fa-2x fa-facebook-square" aria-hidden="true"></i></a>
+				<a href="https://www.facebook.com/cuongnguuyenIT"><i class="fa fa-2x fa-facebook-square" aria-hidden="true"></i></a>
 			</div>
 			<div class="icon icon_instagram">
-				<a href="#"><i class="fa fa-2x fa-instagram" aria-hidden="true"></i></a>
+				<a href="https://www.instagram.com/"><i class="fa fa-2x fa-instagram" aria-hidden="true"></i></a>
 			</div>
 			<div class="icon icon_youtube">
-				<a href="#"><i class="fa fa-2x fa-youtube-play" aria-hidden="true"></i></a>
+				<a href="https://www.youtube.com/"><i class="fa fa-2x fa-youtube-play" aria-hidden="true"></i></a>
 			</div>
 		</div>
 		<div class=" icon_bars section">
