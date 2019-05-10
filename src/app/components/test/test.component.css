@@ -33,7 +33,7 @@
   right: 0;
   position: absolute;
   z-index: -1;
-  background-image: url(./../../../assets/images/main_community.jpg);
+  /* background-image: url(./../../../assets/images/main_community.jpg); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
