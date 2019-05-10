@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { BookmarkService } from './../../../services/bookmark.service'
 import { TagService } from './../../../services/tag.service'
 @Component({
@@ -12,7 +12,8 @@ export class BookmarkComponent implements OnInit {
   constructor(
 
   	private bookmarkService:BookmarkService,
-    private tagService:TagService
+    private tagService:TagService,
+    private routeServie: Router
   	) { }
   public listPost:any[];
   public listWord:any[];
@@ -20,6 +21,9 @@ export class BookmarkComponent implements OnInit {
   isReading:boolean = false;
   isRemoving:boolean = false;
   ngOnInit() {
+    if(localStorage.getItem('token')==null){
+      this.routeServie.navigateByUrl("/");
+    }
   	this.getBookmark();
   }
 

@@ -48,7 +48,7 @@
 				<div class="require_question section2">
 					{{i+1}}. {{question.content}}
 				</div>
-				<div class="text_question section2">
+				<div class="text_question section2" *ngIf="question.imgs.length>0">
 					<img src="https://elearn-anhhong.c9users.io/images/{{question.imgs[0]}}" width="50%" height="50%">
 				</div>
 				<div class="section1">

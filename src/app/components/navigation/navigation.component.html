@@ -102,7 +102,7 @@
 				(keydown.enter)="login()">
 			</div>
 			<div class="forgot">
-				<a href="">Forgot password ?</a>
+				<a [routerLink]="['/forgot-password']" (click)="showFormLogin()">Forgot password ?</a>
 			</div>
 			<div class="message_error" *ngIf="message_error!=''">
 				<span>{{message_error}}</span>

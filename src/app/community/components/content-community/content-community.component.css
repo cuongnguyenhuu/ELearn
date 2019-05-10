@@ -620,6 +620,9 @@ img{
 }
 .box{
 	padding-right: 16px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .title_setting{
 	display: flex;

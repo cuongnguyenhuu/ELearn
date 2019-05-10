@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileService } from './../../../services/profile.service'
 import { LoginService } from './../../../services/login.service'
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
 //models
 import { Profile } from './../../../models/profile.class'
 @Component({
@@ -14,7 +15,8 @@ export class ContentProfileComponent implements OnInit {
   constructor(
   	public profileService: ProfileService,
   	private loginService: LoginService,
-    private spinner : NgxSpinnerService
+    private spinner : NgxSpinnerService,
+    private routeServie: Router
   	) { }
   password_old:string;
   password_new:string
@@ -29,6 +31,9 @@ export class ContentProfileComponent implements OnInit {
   messageError:string='';
   message:string;
   ngOnInit() {
+    if(localStorage.getItem('token')==null){
+      this.routeServie.navigateByUrl("/");
+    }
   	this.getProfile();
   }
   getProfile(){

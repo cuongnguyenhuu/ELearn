@@ -29,7 +29,7 @@
 					<div class="text_content">
 						<span style="    white-space: pre-line;">{{postDetail.content}}</span>
 					</div>
-					<div class="like_comment_save">
+					<div class="like_comment_save" *ngIf="profile!=null">
 						<div class="box" >
 							<i class="fa fa-heart" aria-hidden="true" [style.color]="postDetail.isLike?'red':'#00000061'"></i><input (click)="like(postDetail)" class="button_like_commnet" type="button" name="" value="Like({{postDetail.likes}})">
 						</div>
@@ -61,7 +61,7 @@
 								<p>{{comment.content}}</p>
 								
 							</div>
-							<div class="function_comment">
+							<div class="function_comment" *ngIf="profile!=null&&(comment.profile._id==profile.id||comment.profile.id==profile.id)">
 								<i class="fa fa-ellipsis-h" aria-hidden="true" (click)="toggleFunctionComment(comment)" 
 								(clickOutside)="_comment==comment?_comment='':null"></i>
 								<div class="list_function" *ngIf="_comment == comment" >
@@ -75,11 +75,11 @@
 										<span>Delete comment</span>
 										
 									</div>
-									<div>
+									<!-- <div>
 										<i class="fa fa-bug" aria-hidden="true"></i>
 										<span>Report comment</span>
 										
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>
@@ -120,6 +120,70 @@
 							<input type="button" name="" value="Delete" (click)="deleteComment()">
 						</div>
 					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="detailPost load_data" *ngIf="postDetail==null" >
+			<div>
+				<div id="black" class="black">
+					
+				</div>
+				<div class="white">
+					<div class="infor">
+						<div class="imgUserPost">
+							<label></label>
+						</div>
+						<div class="nameAndDatetime">
+							<div class="name">
+								<span></span>
+							</div>
+							<div class="datetime">
+								<span></span>
+							</div>
+						</div>
+					</div>
+					<div class="text_content">
+						<span></span>
+					</div>
+					<div class="like_comment_save" *ngIf="profile!=null">
+						<div class="box" >
+							
+						</div>
+						<!-- <div class="box">
+							<i class="fa fa-commenting" aria-hidden="true"></i><input class="button_like_commnet" type="button" name="" value="Comment({{postDetail.comments}})">
+						</div> -->
+						<div class="box">
+							
+						</div>
+					</div>
+					<!-- <div class="input_comment" *ngIf="profile!=null">
+						<div class="img_current_user">
+							
+						</div>
+						<div class="input">
+							
+						</div>
+					</div> -->
+					<!-- <div class="comments" >
+						<div class="comment" *ngFor="let comment of comments">
+							<div class="img_user_comment">
+								
+							</div>
+							<div class="content_comment">
+								<a class="name" href=""></a>
+								<span class="datetime"></span>
+								<p></p>
+								
+							</div>
+							<div class="function_comment" *ngIf="profile!=null&&(comment.profile._id==profile.id||comment.profile.id==profile.id)">
+								
+							</div>
+						</div>
+						
+					</div> -->
 				</div>
 			</div>
 

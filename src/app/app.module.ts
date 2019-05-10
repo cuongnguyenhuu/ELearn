@@ -12,6 +12,7 @@ import { PostModule } from './post/post.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NotificationModule } from './notification/notification.module'
+import { ForgotPasswordModule } from './forgot-password/forgot-password.module'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -66,6 +67,7 @@ const appRoutes: Routes = [
     BookmarkModule,
     PostModule,
     NotificationModule,
+    ForgotPasswordModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [

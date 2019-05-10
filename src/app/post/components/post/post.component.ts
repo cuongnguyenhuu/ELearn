@@ -203,17 +203,19 @@ export class PostComponent implements OnInit {
   }
   addComment(){
     // console.log(this.input_comment);
-    this.postService.addComment(this.input_comment,this.postDetail._id).subscribe(data=>{
-      // console.log(data);
-      if(data!=null){
-      this.comments.unshift(new Comment(data.comment,this.profile,this.postDetail._id,this.input_comment,new Date()));
-      // console.log(this.comments);
-      // this.posts[this.posts.indexOf(this.postDetail)].comments = this.posts[this.posts.indexOf(this.postDetail)].comments +1;
-      // this.postDetail.comments= this.postDetail.comments+1;
-      this.input_comment='';
-      }
-    },error=>{
-      console.log(error);
-    });
+    if(this.input_comment!=null&&this.input_comment!=''){
+      this.postService.addComment(this.input_comment,this.postDetail._id).subscribe(data=>{
+        // console.log(data);
+        if(data!=null){
+        this.comments.unshift(new Comment(data.comment,this.profile,this.postDetail._id,this.input_comment,new Date()));
+        // console.log(this.comments);
+        // this.posts[this.posts.indexOf(this.postDetail)].comments = this.posts[this.posts.indexOf(this.postDetail)].comments +1;
+        // this.postDetail.comments= this.postDetail.comments+1;
+        this.input_comment='';
+        }
+      },error=>{
+        console.log(error);
+      });
+    }
   }
 }

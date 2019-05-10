@@ -69,6 +69,7 @@ export class ContentCommunityComponent implements OnInit {
     this.activatedRouteService.queryParams.subscribe(data=>{
       // console.log(data);
       // if(data["tag"]!=null){
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       this.tagGetPosts = data["tag"];
       // this.posts=[];
       this.posts=[];

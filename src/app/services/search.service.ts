@@ -14,7 +14,7 @@ export class SearchService {
   constructor(private http: HttpClient) { }
 
   getResultSearch(text){
-  	if(httpOptions.headers.has('token')==false){
+  	if(httpOptions.headers.has('token')==false&&localStorage.getItem('token')!=null){
     httpOptions.headers =  httpOptions.headers.append("token",localStorage.getItem('token'));
    }
   	return this.http.get<any>(this.API+"search?q="+text,httpOptions);
